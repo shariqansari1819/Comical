@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="clickHandler"
+            type="com.codebosses.comical.activities.LoginActivity.LoginClickHandler" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -108,6 +115,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:onClick="@{clickHandler::onLoginClick}"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@drawable/bg_login_button"
                 android:fontFamily="@font/roboto_regular"
@@ -137,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:onClick="@{clickHandler::onFacebookClick}"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@drawable/bg_facebook_button"
                 android:fontFamily="@font/roboto_regular"
@@ -165,6 +174,7 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:layout_marginBottom="@dimen/_15sdp"
+                android:onClick="@{clickHandler::onGoogleClick}"
                 android:background="@drawable/bg_google_button"
                 android:fontFamily="@font/roboto_regular"
                 android:text="@string/login_with_google"
