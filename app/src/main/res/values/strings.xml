@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Comical</string>
+
+    <!--Splash activity strings-->
+    <string name="read_the_best">Read the best comics</string>
+
+    <!--Intro activity strings-->
+    <string name="skip">Skip</string>
+    <string name="intro_one_heading">Find your favorite comics</string>
+    <string name="intro_one_description">Just grab your coffee, relax, open our app and only read your favorite comics, but also stay inside the news about geek world!</string>
+    <string name="intro_two_heading">Read everywhere</string>
+    <string name="intro_two_description">Get access to all comics online or choose the ones you like best, save them offline and get access whenever you want!</string>
+
+    <!--Login activity strings-->
+    <string name="welcome">Welcome to Comical!</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log In</string>
+    <string name="or_enter_with">Or Enter With</string>
+    <string name="login_with_facebook">Login with Facebook</string>
+    <string name="login_with_google">Login with Google</string>
 </resources>

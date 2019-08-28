@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#EF473A</color>
+    <color name="colorPrimaryDark">#CB2D3E</color>
+    <color name="colorAccent">#EF473A</color>
+    <color name="colorPrimaryText">#202020</color>
+    <color name="colorSecondaryText">#657786</color>
+    <color name="colorSecondaryLightText">#AAB8C2</color>
+    <color name="colorDivider">#BDBDBD</color>
+    <color name="colorDarkGrey">#848B97</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorPrimaryLight">#80EF473A</color>
+
+    <color name="colorBackground">#F1F2F2</color>
+
+    <color name="colorFacebook">#3B5998</color>
 </resources>

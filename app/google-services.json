@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "887658063533",
+    "firebase_url": "https://comical-a9316.firebaseio.com",
+    "project_id": "comical-a9316",
+    "storage_bucket": "comical-a9316.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:887658063533:android:571fe8c29bc09289",
+        "android_client_info": {
+          "package_name": "com.codebosses.comical"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "887658063533-ir7g43hjf4uq0ebalm4a7qvdnrkdep6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.codebosses.comical",
+            "certificate_hash": "925db0baefc7961a0ab6875f36f2e8cddf42cc4c"
+          }
+        },
+        {
+          "client_id": "887658063533-8ui5jaqjr66ksi6jsiltcs642il17h1h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ3gcf04haOvPMmIpyDeP7azCYkX7HgXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "887658063533-8ui5jaqjr66ksi6jsiltcs642il17h1h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
