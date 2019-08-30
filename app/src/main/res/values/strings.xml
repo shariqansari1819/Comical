@@ -24,4 +24,12 @@
     <string name="comics">Comics</string>
     <string name="search">Search</string>
     <string name="profile">Profile</string>
+
+    <!--Comic detail activity strings-->
+    <string-array name="comic_detail_pager_title">
+        <item>About</item>
+        <item>Comics</item>
+        <item>Movies</item>
+    </string-array>
+
 </resources>
