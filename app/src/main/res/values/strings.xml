@@ -19,4 +19,9 @@
     <string name="or_enter_with">Or Enter With</string>
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="login_with_google">Login with Google</string>
+
+    <!--Home activity strings-->
+    <string name="comics">Comics</string>
+    <string name="search">Search</string>
+    <string name="profile">Profile</string>
 </resources>

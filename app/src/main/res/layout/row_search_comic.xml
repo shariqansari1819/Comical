@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="comic"
+            type="com.codebosses.comical.pojo.Comics" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewComicSearchRow"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_175sdp"
+            android:image="@{comic.image}"
+            android:scaleType="centerCrop"
+            android:src="@drawable/comic_search_placeholder"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_175sdp"
+            android:background="@drawable/bg_search_alpha_gradient"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNameSearchComicRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_7sdp"
+            android:fontFamily="@font/roboto_regular"
+            android:singleLine="true"
+            android:text="@{comic.title}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDescriptionSearchComic"
+            app:layout_constraintStart_toStartOf="@+id/imageViewComicSearchRow" />
+
+        <TextView
+            android:id="@+id/textViewDescriptionSearchComic"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:maxLines="2"
+            android:text="@{comic.description}"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toolbarMain"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="2dp"
     android:background="@color/colorPrimary"
+    android:elevation="2dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <TextView
@@ -14,6 +15,6 @@
         android:fontFamily="@font/roboto_regular"
         android:text="Some Title"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_15ssp" />
+        android:textSize="@dimen/_16ssp" />
 
 </androidx.appcompat.widget.Toolbar>

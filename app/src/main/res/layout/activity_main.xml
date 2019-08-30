@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayoutMain"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    tools:context=".activities.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/appBarMain"
-        layout="@layout/app_bar_main" />
-
-    <FrameLayout
-        android:id="@+id/frameLayoutMainContainer"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutMain"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/layoutBottomNavMain"
-        app:layout_constraintTop_toBottomOf="@+id/appBarMain" />
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        tools:context=".activities.MainActivity">
 
-    <include
-        android:id="@+id/layoutBottomNavMain"
-        layout="@layout/layout_bottom_nav" />
+        <include
+            android:id="@+id/appBarMain"
+            layout="@layout/app_bar_main" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/frameLayoutMainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/layoutBottomNavMain"
+            app:layout_constraintTop_toBottomOf="@+id/appBarMain" />
+
+        <include
+            android:id="@+id/layoutBottomNavMain"
+            layout="@layout/layout_bottom_nav" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
