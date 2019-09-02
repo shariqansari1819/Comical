@@ -1,15 +1,16 @@
 package com.codebosses.comical.activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.codebosses.comical.R;
 import com.codebosses.comical.databinding.ActivityMainBinding;
@@ -17,6 +18,8 @@ import com.codebosses.comical.fragments.FragmentHome;
 import com.codebosses.comical.fragments.FragmentProfile;
 import com.codebosses.comical.fragments.FragmentSearch;
 import com.codebosses.comical.fragments.base.BaseFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -29,7 +32,6 @@ import static com.codebosses.comical.common.Constants.TAB_PROFILE;
 import static com.codebosses.comical.common.Constants.TAB_SEARCH;
 import static com.codebosses.comical.custom.backstack.FragmentUtils.addAdditionalTabFragment;
 import static com.codebosses.comical.custom.backstack.FragmentUtils.addInitialTabFragment;
-import static com.codebosses.comical.custom.backstack.FragmentUtils.addShowHideFragment;
 import static com.codebosses.comical.custom.backstack.FragmentUtils.removeFragment;
 import static com.codebosses.comical.custom.backstack.FragmentUtils.showHideTabFragment;
 import static com.codebosses.comical.custom.backstack.StackListManager.updateStackIndex;
@@ -62,10 +64,18 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.Frag
     private List<String> stackList;
     private List<String> menuStacks;
 
+    //    TODO: Firebase fields....
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+//        Firebase fields initialization....
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
 
 //        Setting custom action bar....
         setCustomActionBar();
@@ -130,9 +140,13 @@ public class MainActivity extends AppCompatActivity implements BaseFragment.Frag
                 selectedTab(TAB_SEARCH);
                 break;
             case R.id.bottomNavItemProfile:
-                index = 2;
-                setAppBarTitle(getResources().getString(R.string.profile));
-                selectedTab(TAB_PROFILE);
+                if (firebaseUser != null) {
+                    index = 2;
+                    setAppBarTitle(getResources().getString(R.string.profile));
+                    selectedTab(TAB_PROFILE);
+                } else {
+                    startActivity(new Intent(this, LoginActivity.class));
+                }
                 break;
         }
         imageViews[currentFragmentIndex].setSelected(false);

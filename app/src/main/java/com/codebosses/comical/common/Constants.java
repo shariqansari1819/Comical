@@ -7,4 +7,9 @@ public interface Constants {
     String TAB_SEARCH = "search";
     String TAB_PROFILE = "profile";
 
+    //    Login constants....
+    String GMAIL = "gmail";
+    String FACEBOOK = "facebook";
+    String EMAIL = "email";
+
 }

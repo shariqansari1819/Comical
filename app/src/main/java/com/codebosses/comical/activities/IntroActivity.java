@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,9 @@ import android.widget.ImageView;
 import com.codebosses.comical.R;
 import com.codebosses.comical.adapters.IntroPagerAdapter;
 import com.codebosses.comical.databinding.ActivityIntroBinding;
+import com.codebosses.comical.endpoints.EndpointKeys;
 import com.codebosses.comical.pojo.IntroPagerModel;
+import com.codebosses.comical.utils.PrefUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +24,7 @@ public class IntroActivity extends AppCompatActivity implements ViewPager.OnPage
 
     //    Android fields....
     private ActivityIntroBinding introBinding;
+    private Context context;
 
     //    Adapter fields....
     private IntroPagerAdapter introPagerAdapter;
@@ -30,6 +34,8 @@ public class IntroActivity extends AppCompatActivity implements ViewPager.OnPage
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         introBinding = DataBindingUtil.setContentView(this, R.layout.activity_intro);
+
+        context = this;
 
         createDataSet();
         introPagerAdapter = new IntroPagerAdapter(this, introPagerModelList);
@@ -74,11 +80,12 @@ public class IntroActivity extends AppCompatActivity implements ViewPager.OnPage
         imageViewDeselected.setSelected(false);
     }
 
-
     public class IntroClickHandler {
 
         public void onSkipClick(View view) {
-            startActivity(new Intent(IntroActivity.this, LoginActivity.class));
+            PrefUtils.saveToPrefs(context, EndpointKeys.IS_USER_FIRST_TIME, false);
+            startActivity(new Intent(context, MainActivity.class));
+            finish();
         }
 
     }

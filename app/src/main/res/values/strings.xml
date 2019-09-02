@@ -4,6 +4,9 @@
     <!--Splash activity strings-->
     <string name="read_the_best">Read the best comics</string>
 
+    <string name="facebook_app_id">487438621815665</string>
+    <string name="fb_login_protocol_scheme">fb487438621815665</string>
+
     <!--Intro activity strings-->
     <string name="skip">Skip</string>
     <string name="intro_one_heading">Find your favorite comics</string>
@@ -19,6 +22,16 @@
     <string name="or_enter_with">Or Enter With</string>
     <string name="login_with_facebook">Login with Facebook</string>
     <string name="login_with_google">Login with Google</string>
+    <string name="dont_have_account"><u>Don\'t have account?</u></string>
+
+    <!--Sign up activity strings-->
+    <string name="go_back"><u>Go Back</u></string>
+    <string name="create_new_account">Create New Account</string>
+    <string name="name">Full Name</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="please_fill_all_fields">Please fill all the fields.</string>
+    <string name="invalid_email_address">Please enter valid email address.</string>
+    <string name="invalid_password">Password must be greater than 6 characters.</string>
 
     <!--Home activity strings-->
     <string name="comics">Comics</string>

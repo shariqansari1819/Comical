@@ -26,6 +26,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:background="@color/colorPrimary"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:focusedByDefault="true"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -100,7 +103,7 @@
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:fontFamily="@font/roboto_regular"
                 android:hint="@string/password"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:paddingStart="@dimen/_40sdp"
                 android:paddingBottom="@dimen/_15sdp"
                 android:textColor="@color/colorSecondaryText"
@@ -115,10 +118,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:onClick="@{clickHandler::onLoginClick}"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@drawable/bg_login_button"
                 android:fontFamily="@font/roboto_regular"
+                android:onClick="@{clickHandler::onLoginClick}"
                 android:text="@string/log_in"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
@@ -145,10 +148,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_15sdp"
-                android:onClick="@{clickHandler::onFacebookClick}"
                 android:layout_marginEnd="@dimen/_15sdp"
                 android:background="@drawable/bg_facebook_button"
                 android:fontFamily="@font/roboto_regular"
+                android:onClick="@{clickHandler::onFacebookClick}"
                 android:text="@string/login_with_facebook"
                 android:textAllCaps="false"
                 android:textColor="@color/colorWhite"
@@ -173,15 +176,13 @@
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_15sdp"
-                android:onClick="@{clickHandler::onGoogleClick}"
                 android:background="@drawable/bg_google_button"
                 android:fontFamily="@font/roboto_regular"
+                android:onClick="@{clickHandler::onGoogleClick}"
                 android:text="@string/login_with_google"
                 android:textAllCaps="false"
                 android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/_14ssp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonFacebook" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -194,6 +195,22 @@
                 app:layout_constraintBottom_toBottomOf="@+id/buttonGoogle"
                 app:layout_constraintStart_toStartOf="@+id/buttonGoogle"
                 app:layout_constraintTop_toTopOf="@+id/buttonGoogle" />
+
+            <TextView
+                android:id="@+id/textViewDontHaveAccount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginBottom="@dimen/_25sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:onClick="@{clickHandler::onDontHaveAccountClick}"
+                android:text="@string/dont_have_account"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/buttonGoogle" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
