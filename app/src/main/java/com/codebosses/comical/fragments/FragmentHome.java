@@ -58,20 +58,6 @@ public class FragmentHome extends BaseFragment {
         homeBinding.recyclerViewHome.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         homeBinding.recyclerViewHome.setAdapter(comicsHomeAdapter);
 
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-
-        comicsHomeAdapter.notifyDataSetChanged();
-
         return homeBinding.getRoot();
     }
 
@@ -95,7 +81,7 @@ public class FragmentHome extends BaseFragment {
     public void onComicClick(EventBusAdapterClick eventBusAdapterClick) {
         if (eventBusAdapterClick.getClickType().equals(EndpointKeys.HOME_COMIC_CLICK)) {
             Intent intent = new Intent(getActivity(), ComicDetailActivity.class);
-            intent.putExtra(EndpointKeys.COMIC,comicsList.get(eventBusAdapterClick.getPosition()));
+            intent.putExtra(EndpointKeys.COMIC, comicsList.get(eventBusAdapterClick.getPosition()));
             startActivity(intent);
         }
     }

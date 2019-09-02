@@ -2,50 +2,35 @@ package com.codebosses.comical.pojo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.widget.ImageView;
-
-import androidx.databinding.BindingAdapter;
-
-import com.bumptech.glide.Glide;
-import com.codebosses.comical.R;
 
 public class Comics implements Parcelable {
 
-    private int image;
-    private String title;
-    private String edition;
-    private String backDropPath;
-    private double rating;
-    private String publisher;
-    private String firstApearance;
-    private String description;
-    private String author;
-    private String pdfUrl;
+    private String comicId;
+    private String comicGroupId;
+    private String comicName;
+    private String comicPosterPath;
+    private String comicBannerPath;
+    private String comicUrl;
 
-    public Comics(int image, String title, String edition, String backDropPath, double rating, String publisher, String firstApearance, String description, String author, String pdfUrl) {
-        this.image = image;
-        this.title = title;
-        this.edition = edition;
-        this.backDropPath = backDropPath;
-        this.rating = rating;
-        this.publisher = publisher;
-        this.firstApearance = firstApearance;
-        this.description = description;
-        this.author = author;
-        this.pdfUrl = pdfUrl;
+    public Comics() {
+    }
+
+    public Comics(String comicId, String comicGroupId, String comicName, String comicPosterPath, String comicBannerPath, String comicUrl) {
+        this.comicId = comicId;
+        this.comicGroupId = comicGroupId;
+        this.comicName = comicName;
+        this.comicPosterPath = comicPosterPath;
+        this.comicBannerPath = comicBannerPath;
+        this.comicUrl = comicUrl;
     }
 
     protected Comics(Parcel in) {
-        image = in.readInt();
-        title = in.readString();
-        edition = in.readString();
-        backDropPath = in.readString();
-        rating = in.readDouble();
-        publisher = in.readString();
-        firstApearance = in.readString();
-        description = in.readString();
-        author = in.readString();
-        pdfUrl = in.readString();
+        comicId = in.readString();
+        comicGroupId = in.readString();
+        comicName = in.readString();
+        comicPosterPath = in.readString();
+        comicBannerPath = in.readString();
+        comicUrl = in.readString();
     }
 
     public static final Creator<Comics> CREATOR = new Creator<Comics>() {
@@ -60,92 +45,52 @@ public class Comics implements Parcelable {
         }
     };
 
-    public int getImage() {
-        return image;
+    public String getComicId() {
+        return comicId;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setComicId(String comicId) {
+        this.comicId = comicId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getComicGroupId() {
+        return comicGroupId;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setComicGroupId(String comicGroupId) {
+        this.comicGroupId = comicGroupId;
     }
 
-    public String getEdition() {
-        return edition;
+    public String getComicName() {
+        return comicName;
     }
 
-    public void setEdition(String edition) {
-        this.edition = edition;
+    public void setComicName(String comicName) {
+        this.comicName = comicName;
     }
 
-    public String getBackDropPath() {
-        return backDropPath;
+    public String getComicPosterPath() {
+        return comicPosterPath;
     }
 
-    public void setBackDropPath(String backDropPath) {
-        this.backDropPath = backDropPath;
+    public void setComicPosterPath(String comicPosterPath) {
+        this.comicPosterPath = comicPosterPath;
     }
 
-    public double getRating() {
-        return rating;
+    public String getComicBannerPath() {
+        return comicBannerPath;
     }
 
-    public void setRating(double rating) {
-        this.rating = rating;
+    public void setComicBannerPath(String comicBannerPath) {
+        this.comicBannerPath = comicBannerPath;
     }
 
-    public String getPublisher() {
-        return publisher;
+    public String getComicUrl() {
+        return comicUrl;
     }
 
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
-    public String getFirstApearance() {
-        return firstApearance;
-    }
-
-    public void setFirstApearance(String firstApearance) {
-        this.firstApearance = firstApearance;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getPdfUrl() {
-        return pdfUrl;
-    }
-
-    public void setPdfUrl(String pdfUrl) {
-        this.pdfUrl = pdfUrl;
-    }
-
-    @BindingAdapter({"android:image"})
-    public static void setImageUrl(ImageView imageView, int imageUrl) {
-        Glide.with(imageView.getContext())
-                .load(imageUrl)
-                .placeholder(R.drawable.comic_placeholder)
-                .into(imageView);
+    public void setComicUrl(String comicUrl) {
+        this.comicUrl = comicUrl;
     }
 
     @Override
@@ -155,15 +100,11 @@ public class Comics implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(image);
-        dest.writeString(title);
-        dest.writeString(edition);
-        dest.writeString(backDropPath);
-        dest.writeDouble(rating);
-        dest.writeString(publisher);
-        dest.writeString(firstApearance);
-        dest.writeString(description);
-        dest.writeString(author);
-        dest.writeString(pdfUrl);
+        dest.writeString(comicId);
+        dest.writeString(comicGroupId);
+        dest.writeString(comicName);
+        dest.writeString(comicPosterPath);
+        dest.writeString(comicBannerPath);
+        dest.writeString(comicUrl);
     }
 }

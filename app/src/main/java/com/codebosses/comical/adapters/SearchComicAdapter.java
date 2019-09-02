@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.codebosses.comical.R;
 import com.codebosses.comical.databinding.RowSearchComicBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
-import com.codebosses.comical.pojo.Comics;
+import com.codebosses.comical.pojo.ComicGroup;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,9 +24,9 @@ public class SearchComicAdapter extends RecyclerView.Adapter<SearchComicAdapter.
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<Comics> comicsList = new ArrayList<>();
+    private List<ComicGroup> comicsList = new ArrayList<>();
 
-    public SearchComicAdapter(Context context, List<Comics> comicsList) {
+    public SearchComicAdapter(Context context, List<ComicGroup> comicsList) {
         this.context = context;
         this.comicsList = comicsList;
         layoutInflater = LayoutInflater.from(context);

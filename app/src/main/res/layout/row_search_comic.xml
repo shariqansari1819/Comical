@@ -5,7 +5,7 @@
 
         <variable
             name="comic"
-            type="com.codebosses.comical.pojo.Comics" />
+            type="com.codebosses.comical.pojo.ComicGroup" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,7 +16,7 @@
             android:id="@+id/imageViewComicSearchRow"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_175sdp"
-            android:image="@{comic.image}"
+            android:image="@{comic.backDropPath}"
             android:scaleType="centerCrop"
             android:src="@drawable/comic_search_placeholder"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
             android:layout_marginBottom="@dimen/_7sdp"
             android:fontFamily="@font/roboto_regular"
             android:singleLine="true"
-            android:text="@{comic.title}"
+            android:text="@{comic.groupName}"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_15ssp"
             app:layout_constraintBottom_toTopOf="@+id/textViewDescriptionSearchComic"
@@ -50,7 +50,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:layout_marginBottom="@dimen/_15sdp"
             android:maxLines="2"
-            android:text="@{comic.description}"
+            android:text="@{comic.groupDescription}"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintBottom_toBottomOf="parent" />

@@ -17,6 +17,7 @@ import com.codebosses.comical.adapters.SearchComicAdapter;
 import com.codebosses.comical.databinding.FragmentSearchBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
 import com.codebosses.comical.fragments.base.BaseFragment;
+import com.codebosses.comical.pojo.ComicGroup;
 import com.codebosses.comical.pojo.Comics;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 
@@ -36,7 +37,7 @@ public class FragmentSearch extends BaseFragment {
 
     //    Adapter fields....
     private SearchComicAdapter searchComicAdapter;
-    private List<Comics> comicsList = new ArrayList<>();
+    private List<ComicGroup> comicsList = new ArrayList<>();
 
     public static FragmentSearch getInstance() {
         if (fragmentSearch == null) {
@@ -57,19 +58,6 @@ public class FragmentSearch extends BaseFragment {
         searchComicAdapter = new SearchComicAdapter(getActivity(), comicsList);
         searchBinding.recyclerViewSearch.setLayoutManager(new LinearLayoutManager(getActivity()));
         searchBinding.recyclerViewSearch.setAdapter(searchComicAdapter);
-
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        comicsList.add(new Comics(R.drawable.comic_search_placeholder, "The Spider Main", "#1 The Spectacular Spider Main - Special Edition", "", 5.5, "Marvel", "1962", "Small description", "Stan Lee", ""));
-        searchComicAdapter.notifyDataSetChanged();
 
         return searchBinding.getRoot();
     }
@@ -94,7 +82,7 @@ public class FragmentSearch extends BaseFragment {
     public void onSearchComicClick(EventBusAdapterClick eventBusAdapterClick) {
         if (eventBusAdapterClick.getClickType().equals(EndpointKeys.SEARCH_COMIC_CLICK)) {
             Intent intent = new Intent(getActivity(), ComicDetailActivity.class);
-            intent.putExtra(EndpointKeys.COMIC,comicsList.get(eventBusAdapterClick.getPosition()));
+//            intent.putExtra(EndpointKeys.COMIC, comicsList.get(eventBusAdapterClick.getPosition()));
             startActivity(intent);
         }
     }
