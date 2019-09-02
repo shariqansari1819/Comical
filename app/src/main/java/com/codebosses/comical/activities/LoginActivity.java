@@ -182,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void createUserInFirestore(User userModel) {
-        firebaseFirestore.collection("Users")
+        firebaseFirestore.collection(EndpointKeys.USERS)
                 .document(userModel.getUserId())
                 .set(userModel)
                 .addOnSuccessListener(this, new OnSuccessListener<Void>() {
@@ -342,16 +342,20 @@ public class LoginActivity extends AppCompatActivity {
     public class LoginClickHandler {
 
         public void onLoginClick(View view) {
-            validateUser();
+            if (ValidUtils.isNetworkAvailable(context))
+                validateUser();
         }
 
         public void onFacebookClick(View view) {
-            registerCallback();
+            if (ValidUtils.isNetworkAvailable(context))
+                registerCallback();
         }
 
         public void onGoogleClick(View view) {
-            Intent intent = mGoogleSignInClient.getSignInIntent();
-            startActivityForResult(intent, RC_SIGN_IN);
+            if (ValidUtils.isNetworkAvailable(context)) {
+                Intent intent = mGoogleSignInClient.getSignInIntent();
+                startActivityForResult(intent, RC_SIGN_IN);
+            }
         }
 
         public void onDontHaveAccountClick(View view) {

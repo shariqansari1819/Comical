@@ -113,7 +113,8 @@ public class SignUpActivity extends AppCompatActivity {
     public class SignUpClickHandler {
 
         public void onSignUpClick(View view) {
-            validateUser();
+            if (ValidUtils.isNetworkAvailable(context))
+                validateUser();
         }
 
         public void onBackClick(View view) {

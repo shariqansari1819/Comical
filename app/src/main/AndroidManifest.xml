@@ -7,13 +7,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/comical_logo"
         android:label="@string/app_name"
         android:name=".application.ComicalApplication"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/comical_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.SignUpActivity"></activity>
+        <activity android:name=".activities.SignUpActivity"/>
         <activity android:name=".activities.ComicDetailActivity" />
         <activity android:name=".activities.LoginActivity" />
         <activity android:name=".activities.IntroActivity" />
