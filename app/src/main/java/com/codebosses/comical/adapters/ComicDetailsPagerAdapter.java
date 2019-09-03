@@ -32,7 +32,7 @@ public class ComicDetailsPagerAdapter extends FragmentStatePagerAdapter {
             case 0:
                 return FragmentAbout.getInstance(comicGroup);
             case 1:
-                return new FragmentComics();
+                return FragmentComics.getInstance(comicGroup);
             case 2:
                 return new FragmentMovies();
         }
