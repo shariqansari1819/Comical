@@ -1,5 +1,7 @@
 package com.codebosses.comical.pojo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
@@ -8,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.codebosses.comical.R;
 
-public class ComicGroup {
+public class ComicGroup implements Parcelable {
 
     private String groupName;
     private String groupId;
@@ -34,6 +36,30 @@ public class ComicGroup {
         this.publisher = publisher;
         this.releaseDate = releaseDate;
     }
+
+    protected ComicGroup(Parcel in) {
+        groupName = in.readString();
+        groupId = in.readString();
+        groupPosterPath = in.readString();
+        groupDescription = in.readString();
+        rating = in.readDouble();
+        backDropPath = in.readString();
+        writer = in.readString();
+        publisher = in.readString();
+        releaseDate = in.readString();
+    }
+
+    public static final Creator<ComicGroup> CREATOR = new Creator<ComicGroup>() {
+        @Override
+        public ComicGroup createFromParcel(Parcel in) {
+            return new ComicGroup(in);
+        }
+
+        @Override
+        public ComicGroup[] newArray(int size) {
+            return new ComicGroup[size];
+        }
+    };
 
     public String getGroupName() {
         return groupName;
@@ -114,5 +140,23 @@ public class ComicGroup {
                 .apply(new RequestOptions().centerCrop())
                 .apply(new RequestOptions().placeholder(R.drawable.comic_placeholder))
                 .into(imageView);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(groupName);
+        dest.writeString(groupId);
+        dest.writeString(groupPosterPath);
+        dest.writeString(groupDescription);
+        dest.writeDouble(rating);
+        dest.writeString(backDropPath);
+        dest.writeString(writer);
+        dest.writeString(publisher);
+        dest.writeString(releaseDate);
     }
 }

@@ -12,14 +12,17 @@ import com.codebosses.comical.R;
 import com.codebosses.comical.fragments.FragmentAbout;
 import com.codebosses.comical.fragments.FragmentComics;
 import com.codebosses.comical.fragments.FragmentMovies;
+import com.codebosses.comical.pojo.ComicGroup;
 
 public class ComicDetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
+    private ComicGroup comicGroup;
 
-    public ComicDetailsPagerAdapter(Context context, @NonNull FragmentManager fm, int behavior) {
+    public ComicDetailsPagerAdapter(Context context, @NonNull FragmentManager fm, int behavior, ComicGroup comicGroup) {
         super(fm, behavior);
         this.context = context;
+        this.comicGroup = comicGroup;
     }
 
     @NonNull
@@ -27,7 +30,7 @@ public class ComicDetailsPagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                return new FragmentAbout();
+                return FragmentAbout.getInstance(comicGroup);
             case 1:
                 return new FragmentComics();
             case 2:

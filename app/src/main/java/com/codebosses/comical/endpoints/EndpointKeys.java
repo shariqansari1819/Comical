@@ -17,6 +17,7 @@ public interface EndpointKeys {
 
     //    Firebase table keys....
     String USERS = "Users";
+    String COMICS = "Comics";
 
     //    Facebook permission keys....
     String EMAIL = "email";

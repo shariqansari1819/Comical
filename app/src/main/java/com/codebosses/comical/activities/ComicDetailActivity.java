@@ -5,9 +5,12 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
 import com.codebosses.comical.R;
 import com.codebosses.comical.adapters.ComicDetailsPagerAdapter;
 import com.codebosses.comical.databinding.ActivityComicDetailBinding;
+import com.codebosses.comical.endpoints.EndpointKeys;
+import com.codebosses.comical.pojo.ComicGroup;
 
 public class ComicDetailActivity extends AppCompatActivity {
 
@@ -17,12 +20,22 @@ public class ComicDetailActivity extends AppCompatActivity {
     //    Adapter fields....
     ComicDetailsPagerAdapter comicDetailsPagerAdapter;
 
+    //    Instance fields....
+    private ComicGroup comicGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         comicDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_comic_detail);
 
-        comicDetailsPagerAdapter = new ComicDetailsPagerAdapter(this, getSupportFragmentManager(), 0);
+        if (getIntent() != null) {
+            comicGroup = getIntent().getParcelableExtra(EndpointKeys.COMIC);
+            if (comicGroup != null) {
+                comicDetailBinding.setComic(comicGroup);
+            }
+        }
+
+        comicDetailsPagerAdapter = new ComicDetailsPagerAdapter(this, getSupportFragmentManager(), 0, comicGroup);
         comicDetailBinding.viewPagerComicDetail.setAdapter(comicDetailsPagerAdapter);
         comicDetailBinding.viewPagerComicDetail.setOffscreenPageLimit(2);
         comicDetailBinding.tabLayoutComicDetail.setupWithViewPager(comicDetailBinding.viewPagerComicDetail);

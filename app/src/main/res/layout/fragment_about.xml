@@ -1,19 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <data>
+
+        <variable
+            name="comic"
+            type="com.codebosses.comical.pojo.ComicGroup" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorBackground"
         tools:context=".fragments.FragmentAbout">
 
-        <View
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
-            android:background="@color/colorWhite"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:id="@+id/viewDetailAbout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:background="@color/colorWhite"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/ratingBarAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:isIndicator="true"
+                android:rating="2"
+                android:saveEnabled="false"
+                app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/viewDetailAbout"
+                app:mrb_fillBackgroundStars="true"
+                app:mrb_progressTint="@color/colorAccent" />
+
+            <TextView
+                android:id="@+id/textViewReviewsAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="5,970 reviews"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/ratingBarAbout"
+                app:layout_constraintStart_toEndOf="@+id/ratingBarAbout"
+                app:layout_constraintTop_toTopOf="@+id/ratingBarAbout" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewTickAbout"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:src="@drawable/ic_action_tick"
+                app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
+                app:layout_constraintEnd_toStartOf="@+id/imageViewShareAbout"
+                app:layout_constraintTop_toTopOf="@+id/viewDetailAbout" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewShareAbout"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:src="@drawable/ic_action_share"
+                app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/viewDetailAbout" />
+
+            <TextView
+                android:id="@+id/textViewPublisherHeadingAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Publisher:"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewDetailAbout" />
+
+            <TextView
+                android:id="@+id/textViewPublisher"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{comic.publisher}"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewPublisherHeadingAbout"
+                app:layout_constraintTop_toTopOf="@+id/textViewPublisherHeadingAbout" />
+
+            <TextView
+                android:id="@+id/textViewFirstAppearanceHeadingAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="First Appearance:"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewPublisher" />
+
+            <TextView
+                android:id="@+id/textViewFirstAppearance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{comic.releaseDate}"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewFirstAppearanceHeadingAbout"
+                app:layout_constraintTop_toTopOf="@+id/textViewFirstAppearanceHeadingAbout" />
+
+            <TextView
+                android:id="@+id/textViewDescriptionHeadingAbout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Description"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewFirstAppearance" />
+
+            <TextView
+                android:id="@+id/textViewDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="@{comic.groupDescription}"
+                android:textColor="@color/colorSecondaryText"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textViewDescriptionHeadingAbout"
+                app:layout_constraintTop_toTopOf="@+id/textViewDescriptionHeadingAbout" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </layout>
