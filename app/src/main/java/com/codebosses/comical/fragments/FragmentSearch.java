@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -17,8 +16,7 @@ import com.codebosses.comical.adapters.SearchComicAdapter;
 import com.codebosses.comical.databinding.FragmentSearchBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
 import com.codebosses.comical.fragments.base.BaseFragment;
-import com.codebosses.comical.pojo.ComicGroup;
-import com.codebosses.comical.pojo.Comics;
+import com.codebosses.comical.pojo.Comic;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 
 import org.greenrobot.eventbus.EventBus;
@@ -37,7 +35,7 @@ public class FragmentSearch extends BaseFragment {
 
     //    Adapter fields....
     private SearchComicAdapter searchComicAdapter;
-    private List<ComicGroup> comicsList = new ArrayList<>();
+    private List<Comic> comicsList = new ArrayList<>();
 
     public static FragmentSearch getInstance() {
         if (fragmentSearch == null) {

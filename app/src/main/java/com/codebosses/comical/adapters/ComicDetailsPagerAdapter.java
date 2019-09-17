@@ -12,14 +12,14 @@ import com.codebosses.comical.R;
 import com.codebosses.comical.fragments.FragmentAbout;
 import com.codebosses.comical.fragments.FragmentComics;
 import com.codebosses.comical.fragments.FragmentMovies;
-import com.codebosses.comical.pojo.ComicGroup;
+import com.codebosses.comical.pojo.Comic;
 
 public class ComicDetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
-    private ComicGroup comicGroup;
+    private Comic comicGroup;
 
-    public ComicDetailsPagerAdapter(Context context, @NonNull FragmentManager fm, int behavior, ComicGroup comicGroup) {
+    public ComicDetailsPagerAdapter(Context context, @NonNull FragmentManager fm, int behavior, Comic comicGroup) {
         super(fm, behavior);
         this.context = context;
         this.comicGroup = comicGroup;

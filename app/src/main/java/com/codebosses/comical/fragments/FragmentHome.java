@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
@@ -18,8 +17,7 @@ import com.codebosses.comical.adapters.ComicsHomeAdapter;
 import com.codebosses.comical.databinding.FragmentHomeBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
 import com.codebosses.comical.fragments.base.BaseFragment;
-import com.codebosses.comical.pojo.ComicGroup;
-import com.codebosses.comical.pojo.Comics;
+import com.codebosses.comical.pojo.Comic;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 import com.codebosses.comical.utils.L;
 import com.codebosses.comical.utils.ValidUtils;
@@ -45,7 +43,7 @@ public class FragmentHome extends BaseFragment {
     private FragmentHomeBinding homeBinding;
 
     //    Adapter fields....
-    private List<ComicGroup> comicsList = new ArrayList<>();
+    private List<Comic> comicsList = new ArrayList<>();
     private ComicsHomeAdapter comicsHomeAdapter;
 
     //    Firebase fields....
@@ -76,14 +74,14 @@ public class FragmentHome extends BaseFragment {
         homeBinding.recyclerViewHome.setAdapter(comicsHomeAdapter);
 
         if (ValidUtils.isNetworkAvailable(getActivity())) {
-            getComicGroups();
+            getComics();
         }
 
         return homeBinding.getRoot();
     }
 
     //    Method to get all comic groups....
-    private void getComicGroups() {
+    private void getComics() {
         homeBinding.circularProgressBarHome.setVisibility(View.VISIBLE);
         firebaseFirestore.collection(EndpointKeys.COMICS)
                 .get()
@@ -94,7 +92,7 @@ public class FragmentHome extends BaseFragment {
                         if (queryDocumentSnapshots != null && queryDocumentSnapshots.size() > 0) {
                             for (DocumentSnapshot snapshot : queryDocumentSnapshots) {
                                 if (snapshot != null && snapshot.exists()) {
-                                    comicsList.add(snapshot.toObject(ComicGroup.class));
+                                    comicsList.add(snapshot.toObject(Comic.class));
                                     comicsHomeAdapter.notifyItemInserted(comicsList.size() - 1);
                                 }
                             }

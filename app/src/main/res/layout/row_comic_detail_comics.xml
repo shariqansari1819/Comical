@@ -6,7 +6,7 @@
 
         <variable
             name="comic"
-            type="com.codebosses.comical.pojo.Comics" />
+            type="com.codebosses.comical.pojo.Chapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:id="@+id/imageViewComicDetailRow"
             android:layout_width="@dimen/_140sdp"
             android:layout_height="@dimen/_200sdp"
-            android:image="@{comic.comicPosterPath}"
+            android:image="@{comic.image}"
             android:padding="0dp"
             android:scaleType="centerCrop"
             android:src="@drawable/comic_placeholder"
@@ -38,7 +38,7 @@
             android:paddingTop="@dimen/_10sdp"
             android:paddingEnd="@dimen/_5sdp"
             android:paddingBottom="@dimen/_10sdp"
-            android:text="@{comic.comicName}"
+            android:text="@{comic.name}"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_14ssp"
             app:layout_constraintBottom_toBottomOf="@+id/imageViewComicDetailRow"

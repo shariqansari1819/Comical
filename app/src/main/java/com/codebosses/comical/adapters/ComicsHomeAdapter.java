@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.codebosses.comical.R;
 import com.codebosses.comical.databinding.RowHomeComicsBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
-import com.codebosses.comical.pojo.ComicGroup;
+import com.codebosses.comical.pojo.Comic;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 
 import org.greenrobot.eventbus.EventBus;
@@ -24,9 +24,9 @@ public class ComicsHomeAdapter extends RecyclerView.Adapter<ComicsHomeAdapter.Co
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<ComicGroup> comicsList = new ArrayList<>();
+    private List<Comic> comicsList = new ArrayList<>();
 
-    public ComicsHomeAdapter(Context context, List<ComicGroup> comicsList) {
+    public ComicsHomeAdapter(Context context, List<Comic> comicsList) {
         this.context = context;
         this.comicsList = comicsList;
         layoutInflater = LayoutInflater.from(context);

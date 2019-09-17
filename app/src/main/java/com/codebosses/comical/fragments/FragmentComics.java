@@ -17,8 +17,8 @@ import com.codebosses.comical.activities.ReadComicActivity;
 import com.codebosses.comical.adapters.ComicsDetailsAdapter;
 import com.codebosses.comical.databinding.FragmentComicsBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
-import com.codebosses.comical.pojo.ComicGroup;
-import com.codebosses.comical.pojo.Comics;
+import com.codebosses.comical.pojo.Chapter;
+import com.codebosses.comical.pojo.Comic;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 import com.codebosses.comical.utils.L;
 import com.codebosses.comical.utils.ValidUtils;
@@ -43,13 +43,13 @@ public class FragmentComics extends Fragment {
 
     //    Adapter fields....
     private ComicsDetailsAdapter comicsDetailsAdapter;
-    private List<Comics> comicsList = new ArrayList<>();
+    private List<Chapter> comicsList = new ArrayList<>();
 
     //    Firebase fields....
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
 
-    public static FragmentComics getInstance(ComicGroup comicGroup) {
+    public static FragmentComics getInstance(Comic comicGroup) {
         FragmentComics fragmentComics = new FragmentComics();
         Bundle bundle = new Bundle();
         bundle.putParcelable(EndpointKeys.COMIC, comicGroup);
@@ -70,13 +70,13 @@ public class FragmentComics extends Fragment {
         firebaseFirestore = FirebaseFirestore.getInstance();
 
         if (getArguments() != null) {
-            ComicGroup comicGroup = getArguments().getParcelable(EndpointKeys.COMIC);
+            Comic comicGroup = getArguments().getParcelable(EndpointKeys.COMIC);
             if (comicGroup != null) {
                 comicsDetailsAdapter = new ComicsDetailsAdapter(getActivity(), comicsList);
                 comicsBinding.recyclerViewComics.setLayoutManager(new GridLayoutManager(getActivity(), 2));
                 comicsBinding.recyclerViewComics.setAdapter(comicsDetailsAdapter);
                 if (ValidUtils.isNetworkAvailable(getActivity())) {
-                    getComics(comicGroup.getGroupId());
+                    getComics(comicGroup.getComicId());
                 }
             }
         }
@@ -103,7 +103,7 @@ public class FragmentComics extends Fragment {
     private void getComics(String comicId) {
         firebaseFirestore.collection(EndpointKeys.COMICS)
                 .document(comicId)
-                .collection(EndpointKeys.COMICS)
+                .collection(EndpointKeys.CHAPTER)
                 .get()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
                     @Override
@@ -111,7 +111,7 @@ public class FragmentComics extends Fragment {
                         if (queryDocumentSnapshots != null && queryDocumentSnapshots.size() > 0) {
                             for (DocumentSnapshot snapshot : queryDocumentSnapshots) {
                                 if (snapshot != null && snapshot.exists()) {
-                                    comicsList.add(snapshot.toObject(Comics.class));
+                                    comicsList.add(snapshot.toObject(Chapter.class));
                                     comicsDetailsAdapter.notifyItemInserted(comicsList.size() - 1);
                                 }
                             }
@@ -129,7 +129,7 @@ public class FragmentComics extends Fragment {
     public void onComicClick(EventBusAdapterClick eventBusAdapterClick) {
         if (eventBusAdapterClick.getClickType().equals(EndpointKeys.COMIC_DETAIL_COMIC_CLICK)) {
             Intent intent = new Intent(getActivity(), ReadComicActivity.class);
-            intent.putExtra(EndpointKeys.COMIC_URL, comicsList.get(eventBusAdapterClick.getPosition()).getComicUrl());
+            intent.putStringArrayListExtra(EndpointKeys.COMIC_URL, comicsList.get(eventBusAdapterClick.getPosition()).getImages());
             startActivity(intent);
         }
     }

@@ -12,14 +12,14 @@ import android.view.ViewGroup;
 import com.codebosses.comical.R;
 import com.codebosses.comical.databinding.FragmentAboutBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
-import com.codebosses.comical.pojo.ComicGroup;
+import com.codebosses.comical.pojo.Comic;
 
 public class FragmentAbout extends Fragment {
 
     //    Android fields....
     private FragmentAboutBinding aboutBinding;
 
-    public static FragmentAbout getInstance(ComicGroup comicGroup) {
+    public static FragmentAbout getInstance(Comic comicGroup) {
         Bundle bundle = new Bundle();
         bundle.putParcelable(EndpointKeys.COMIC, comicGroup);
         FragmentAbout fragmentAbout = new FragmentAbout();
@@ -37,7 +37,7 @@ public class FragmentAbout extends Fragment {
         aboutBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_about, container, false);
 
         if (getArguments() != null) {
-            ComicGroup comicGroup = getArguments().getParcelable(EndpointKeys.COMIC);
+            Comic comicGroup = getArguments().getParcelable(EndpointKeys.COMIC);
             if (comicGroup != null) {
                 aboutBinding.setComic(comicGroup);
             }

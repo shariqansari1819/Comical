@@ -7,7 +7,7 @@
 
         <variable
             name="comic"
-            type="com.codebosses.comical.pojo.ComicGroup" />
+            type="com.codebosses.comical.pojo.Comic" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -94,7 +94,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@{comic.publisher}"
+                android:text="@{comic.name}"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +121,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@{comic.releaseDate}"
+                android:text="@{comic.name}"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -148,7 +148,7 @@
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:fontFamily="@font/roboto_regular"
-                android:text="@{comic.groupDescription}"
+                android:text="@{comic.name}"
                 android:textColor="@color/colorSecondaryText"
                 android:textSize="@dimen/_13ssp"
                 app:layout_constraintEnd_toEndOf="parent"

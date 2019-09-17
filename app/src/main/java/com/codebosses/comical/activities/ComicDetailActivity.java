@@ -5,12 +5,11 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 
-import com.bumptech.glide.Glide;
 import com.codebosses.comical.R;
 import com.codebosses.comical.adapters.ComicDetailsPagerAdapter;
 import com.codebosses.comical.databinding.ActivityComicDetailBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
-import com.codebosses.comical.pojo.ComicGroup;
+import com.codebosses.comical.pojo.Comic;
 
 public class ComicDetailActivity extends AppCompatActivity {
 
@@ -21,7 +20,7 @@ public class ComicDetailActivity extends AppCompatActivity {
     ComicDetailsPagerAdapter comicDetailsPagerAdapter;
 
     //    Instance fields....
-    private ComicGroup comicGroup;
+    private Comic comicGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

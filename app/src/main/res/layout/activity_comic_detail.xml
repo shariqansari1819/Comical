@@ -7,7 +7,7 @@
 
         <variable
             name="comic"
-            type="com.codebosses.comical.pojo.ComicGroup" />
+            type="com.codebosses.comical.pojo.Comic" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_225sdp"
             android:scaleType="centerCrop"
-            android:image="@{comic.backDropPath}"
+            android:image="@{comic.image}"
             android:src="@drawable/comic_search_placeholder"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,7 +48,7 @@
             android:fontFamily="@font/roboto_bold"
             android:gravity="center"
             android:letterSpacing="0.1"
-            android:text="@{comic.groupName}"
+            android:text="@{comic.name}"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_18ssp"

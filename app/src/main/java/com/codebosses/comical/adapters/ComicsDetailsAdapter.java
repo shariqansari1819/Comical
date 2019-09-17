@@ -11,10 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codebosses.comical.R;
 import com.codebosses.comical.databinding.RowComicDetailComicsBinding;
-import com.codebosses.comical.databinding.RowHomeComicsBinding;
 import com.codebosses.comical.endpoints.EndpointKeys;
-import com.codebosses.comical.pojo.ComicGroup;
-import com.codebosses.comical.pojo.Comics;
+import com.codebosses.comical.pojo.Chapter;
 import com.codebosses.comical.pojo.event_bus.EventBusAdapterClick;
 
 import org.greenrobot.eventbus.EventBus;
@@ -26,9 +24,9 @@ public class ComicsDetailsAdapter extends RecyclerView.Adapter<ComicsDetailsAdap
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private List<Comics> comicsList = new ArrayList<>();
+    private List<Chapter> comicsList = new ArrayList<>();
 
-    public ComicsDetailsAdapter(Context context, List<Comics> comicsList) {
+    public ComicsDetailsAdapter(Context context, List<Chapter> comicsList) {
         this.context = context;
         this.comicsList = comicsList;
         layoutInflater = LayoutInflater.from(context);
