@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_225sdp"
             android:scaleType="centerCrop"
-            android:image="@{comic.image}"
+            android:image="@{comic.comicBannerPath}"
             android:src="@drawable/comic_search_placeholder"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,10 +45,10 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/comic_bold"
             android:gravity="center"
             android:letterSpacing="0.1"
-            android:text="@{comic.name}"
+            android:text="@{comic.comicName}"
             android:textAllCaps="true"
             android:textColor="@color/colorWhite"
             android:textSize="@dimen/_18ssp"

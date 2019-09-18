@@ -4,33 +4,46 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Chapter implements Parcelable {
 
     private String chapterId;
     private String comicId;
     private String name;
-    private String image;
+    private String posterPath;
     private ArrayList<String> images;
 
-    public Chapter(String chapterId, String comicId, String name,String image, ArrayList<String> images) {
+    public Chapter() {
+    }
+
+    public Chapter(String chapterId, String comicId, String name, String posterPath, ArrayList<String> images) {
         this.chapterId = chapterId;
         this.comicId = comicId;
         this.name = name;
-        this.image = image;
+        this.posterPath = posterPath;
         this.images = images;
-    }
-
-    public Chapter() {
     }
 
     protected Chapter(Parcel in) {
         chapterId = in.readString();
         comicId = in.readString();
         name = in.readString();
-        image = in.readString();
+        posterPath = in.readString();
         images = in.createStringArrayList();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(chapterId);
+        dest.writeString(comicId);
+        dest.writeString(name);
+        dest.writeString(posterPath);
+        dest.writeStringList(images);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Chapter> CREATOR = new Creator<Chapter>() {
@@ -69,12 +82,12 @@ public class Chapter implements Parcelable {
         this.name = name;
     }
 
-    public String getImage() {
-        return image;
+    public String getPosterPath() {
+        return posterPath;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
     }
 
     public ArrayList<String> getImages() {
@@ -83,19 +96,5 @@ public class Chapter implements Parcelable {
 
     public void setImages(ArrayList<String> images) {
         this.images = images;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(chapterId);
-        dest.writeString(comicId);
-        dest.writeString(name);
-        dest.writeString(image);
-        dest.writeStringList(images);
     }
 }

@@ -40,6 +40,7 @@ public class FragmentAbout extends Fragment {
             Comic comicGroup = getArguments().getParcelable(EndpointKeys.COMIC);
             if (comicGroup != null) {
                 aboutBinding.setComic(comicGroup);
+                aboutBinding.ratingBarAbout.setRating((float) comicGroup.getRating());
             }
         }
 

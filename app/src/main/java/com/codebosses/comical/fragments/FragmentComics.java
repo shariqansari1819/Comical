@@ -103,7 +103,7 @@ public class FragmentComics extends Fragment {
     private void getComics(String comicId) {
         firebaseFirestore.collection(EndpointKeys.COMICS)
                 .document(comicId)
-                .collection(EndpointKeys.CHAPTER)
+                .collection(EndpointKeys.CHAPTERS)
                 .get()
                 .addOnSuccessListener(getActivity(), new OnSuccessListener<QuerySnapshot>() {
                     @Override
