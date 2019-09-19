@@ -12,7 +12,8 @@
         android:roundIcon="@drawable/comical_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ReadComicActivity"></activity>
+        <activity android:name=".activities.ReadComicActivity"
+            android:parentActivityName=".activities.ComicDetailActivity"/>
         <activity android:name=".activities.SignUpActivity" />
         <activity android:name=".activities.ComicDetailActivity" />
         <activity android:name=".activities.LoginActivity" />

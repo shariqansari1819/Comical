@@ -10,6 +10,7 @@ public interface EndpointKeys {
     //    Intent keys....
     String COMIC = "comic_model";
     String COMIC_URL = "comic_url";
+    String COMIC_NAME = "comic_name";
 
     //    Shared preference keys....
     String IS_USER_FIRST_TIME = "is_user_first_time";

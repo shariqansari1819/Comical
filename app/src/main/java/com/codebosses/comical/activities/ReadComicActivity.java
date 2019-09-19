@@ -1,6 +1,7 @@
 package com.codebosses.comical.activities;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -23,17 +24,36 @@ public class ReadComicActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         readComicBinding = DataBindingUtil.setContentView(this, R.layout.activity_read_comic);
 
+//        Setting custom action bar....
+
         if (getIntent() != null) {
             ArrayList<String> comicUrl = getIntent().getStringArrayListExtra(EndpointKeys.COMIC_URL);
+            String name = getIntent().getStringExtra(EndpointKeys.COMIC_NAME);
+            setSupportActionBar(readComicBinding.toolbarReadComic);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setTitle(name);
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            }
             if (comicUrl != null) {
-                ImagesPagerAdapter imagesPagerAdapter = new ImagesPagerAdapter(this,comicUrl);
+                ImagesPagerAdapter imagesPagerAdapter = new ImagesPagerAdapter(this, comicUrl);
                 readComicBinding.viewPager.setAdapter(imagesPagerAdapter);
                 BookFlipPageTransformer bookFlipPageTransformer = new BookFlipPageTransformer();
                 bookFlipPageTransformer.setEnableScale(true);
                 bookFlipPageTransformer.setScaleAmountPercent(10f);
                 readComicBinding.viewPager.setPageTransformer(true, bookFlipPageTransformer);
+                readComicBinding.viewPager.setOffscreenPageLimit(comicUrl.size() - 1);
             }
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

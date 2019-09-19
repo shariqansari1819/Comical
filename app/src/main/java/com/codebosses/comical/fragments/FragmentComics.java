@@ -129,6 +129,7 @@ public class FragmentComics extends Fragment {
     public void onComicClick(EventBusAdapterClick eventBusAdapterClick) {
         if (eventBusAdapterClick.getClickType().equals(EndpointKeys.COMIC_DETAIL_COMIC_CLICK)) {
             Intent intent = new Intent(getActivity(), ReadComicActivity.class);
+            intent.putExtra(EndpointKeys.COMIC_NAME, comicsList.get(eventBusAdapterClick.getPosition()).getName());
             intent.putStringArrayListExtra(EndpointKeys.COMIC_URL, comicsList.get(eventBusAdapterClick.getPosition()).getImages());
             startActivity(intent);
         }
