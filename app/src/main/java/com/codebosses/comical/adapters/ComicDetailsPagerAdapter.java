@@ -14,6 +14,9 @@ import com.codebosses.comical.fragments.FragmentComics;
 import com.codebosses.comical.fragments.FragmentMovies;
 import com.codebosses.comical.pojo.Comic;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ComicDetailsPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context context;

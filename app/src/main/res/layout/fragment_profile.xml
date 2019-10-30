@@ -1,15 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.FragmentProfile">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/buttonLogOut"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Log Out"
-        android:layout_gravity="center"/>
+        android:layout_height="match_parent"
+        tools:context=".fragments.FragmentProfile">
 
-</FrameLayout>
+        <Button
+            android:id="@+id/buttonLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Log Out"
+            android:visibility="gone" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewHeaderProfile"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_225sdp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/comic_search_placeholder"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_225sdp"
+            android:background="@drawable/bg_search_alpha_gradient"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCurrentLeftProfile"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:src="@drawable/ic_action_current"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNameProfile"
+            app:layout_constraintEnd_toStartOf="@+id/textViewNameProfile"
+            app:layout_constraintTop_toTopOf="@+id/textViewNameProfile" />
+
+        <TextView
+            android:id="@+id/textViewNameProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comic_bold"
+            android:text="Shariq Ansari"
+            android:textAllCaps="true"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_16ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewHeaderProfile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewCurrentRightProfile"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:src="@drawable/ic_action_current"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewNameProfile"
+            app:layout_constraintStart_toEndOf="@+id/textViewNameProfile"
+            app:layout_constraintTop_toTopOf="@+id/textViewNameProfile" />
+
+        <TextView
+            android:id="@+id/textViewDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/comic_light"
+            android:gravity="center"
+            android:text="Crazy about comics, reading books, play with cats and dogs!"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_14ssp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="@+id/imageViewCurrentRightProfile"
+            app:layout_constraintStart_toStartOf="@+id/imageViewCurrentLeftProfile"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNameProfile" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayoutProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewHeaderProfile"
+            app:tabBackground="@android:color/transparent"
+            app:tabIndicatorColor="@color/colorWhite"
+            app:tabTextColor="@color/colorWhite" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerProfile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewHeaderProfile" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
