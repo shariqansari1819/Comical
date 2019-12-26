@@ -32,7 +32,7 @@ public class Comic implements Parcelable {
     public Comic() {
     }
 
-    public Comic(String category, String comicId, String comicGenre, String comicName, String comicPosterPath,String comicBannerPath, double rating, String releaseDate, String summary, String tags) {
+    public Comic(String category, String comicId, String comicGenre, String comicName, String comicPosterPath, String comicBannerPath, double rating, String releaseDate, String summary, String tags) {
         this.category = category;
         this.comicId = comicId;
         this.comicGenre = comicGenre;
