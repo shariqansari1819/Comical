@@ -32,7 +32,7 @@ public class ComicDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         comicDetailBinding = DataBindingUtil.setContentView(this, R.layout.activity_comic_detail);
 
-        typeface = Typeface.createFromAsset(getAssets(),"fonts/comic_bold.otf");
+        typeface = Typeface.createFromAsset(getAssets(),"fonts/comic_bold.ttf");
 
         if (getIntent() != null) {
             comicGroup = getIntent().getParcelableExtra(EndpointKeys.COMIC);

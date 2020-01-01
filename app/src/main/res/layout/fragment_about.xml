@@ -59,6 +59,7 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/_5sdp"
                 android:src="@drawable/ic_action_tick"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
                 app:layout_constraintEnd_toStartOf="@+id/imageViewShareAbout"
                 app:layout_constraintTop_toTopOf="@+id/viewDetailAbout" />
@@ -69,6 +70,7 @@
                 android:layout_height="@dimen/_18sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:src="@drawable/ic_action_share"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/viewDetailAbout" />
