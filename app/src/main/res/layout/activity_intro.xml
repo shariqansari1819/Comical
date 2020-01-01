@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_15sdp"
             android:background="?attr/selectableItemBackground"
-            android:fontFamily="@font/roboto_bold"
+            android:fontFamily="@font/comic_bold"
             android:onClick="@{clickHandler::onSkipClick}"
             android:text="@string/skip"
             android:padding="@dimen/_5sdp"

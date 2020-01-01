@@ -18,7 +18,7 @@
             android:layout_marginEnd="@dimen/_10sdp"
             android:background="@drawable/bg_search_edittext"
             android:elevation="1dp"
-            android:fontFamily="@font/roboto_regular"
+            android:fontFamily="@font/comic_regular"
             android:hint="@string/search"
             android:inputType="text"
             android:paddingStart="@dimen/_40sdp"

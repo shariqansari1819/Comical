@@ -71,7 +71,7 @@
             android:layout_marginStart="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginEnd="@dimen/_10sdp"
-            android:fontFamily="@font/comic_light"
+            android:fontFamily="@font/comic_light_italic"
             android:gravity="center"
             android:text="Crazy about comics, reading books, play with cats and dogs!"
             android:textColor="@color/colorWhite"

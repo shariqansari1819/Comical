@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginEnd="@dimen/_20sdp"
-            android:fontFamily="@font/comic_bold"
+            android:fontFamily="@font/comic_black"
             android:gravity="center"
             android:letterSpacing="0.1"
             android:text="@{comic.comicName}"

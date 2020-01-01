@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/comic_bold"
+        android:fontFamily="@font/comic_regular"
         android:text="Some Title"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_16ssp" />
