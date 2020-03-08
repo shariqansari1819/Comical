@@ -1,177 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".ui.registration.signup.SignUpActivity">
 
-    <data>
-        <variable
-            name="clickHandler"
-            type="com.codebosses.comical.activities.SignUpActivity.SignUpClickHandler" />
-    </data>
-
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSignUp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorBackground"
-        tools:context=".activities.SignUpActivity">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutSignUp"
+        <View
+            android:id="@+id/viewTopContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="@dimen/_150sdp"
+            android:background="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:focusedByDefault="true"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/viewTopContainer"
-                android:layout_width="match_parent"
-                android:focusable="true"
-                android:focusableInTouchMode="true"
-                android:focusedByDefault="true"
-                android:layout_height="@dimen/_150sdp"
-                android:background="@color/colorPrimary"
-                app:layout_constraintTop_toTopOf="parent" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewLogoSignUp"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:src="@drawable/comical_logo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewLogoSignUp"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:src="@drawable/comical_logo"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewCreatNewAccountSignUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:fontFamily="@font/comic_regular"
+            android:text="@string/create_new_account"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewLogoSignUp" />
 
-            <TextView
-                android:id="@+id/textViewCreatNewAccountSignUp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/comic_regular"
-                android:text="@string/create_new_account"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_15ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageViewLogoSignUp" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewNameSignUp"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:src="@drawable/ic_action_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextNameSignUp"
+            app:layout_constraintStart_toStartOf="@+id/editTextNameSignUp"
+            app:layout_constraintTop_toTopOf="@+id/editTextNameSignUp"
+            app:tint="@color/colorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewNameSignUp"
-                android:layout_width="@dimen/_17sdp"
-                android:layout_height="@dimen/_17sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
-                android:src="@drawable/ic_action_profile"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextNameSignUp"
-                app:tint="@color/colorPrimary"
-                app:layout_constraintStart_toStartOf="@+id/editTextNameSignUp"
-                app:layout_constraintTop_toTopOf="@+id/editTextNameSignUp" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextNameSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/comic_regular"
+            android:hint="@string/name"
+            android:inputType="textCapWords"
+            android:paddingStart="@dimen/_40sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:textColor="@color/colorSecondaryText"
+            android:textColorHint="@color/colorSecondaryText"
+            android:textSize="@dimen/_15ssp"
+            app:backgroundTint="@color/colorSecondaryLightText"
+            app:layout_constraintTop_toBottomOf="@+id/viewTopContainer" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextNameSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_25sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:fontFamily="@font/comic_regular"
-                android:hint="@string/name"
-                android:inputType="textCapWords"
-                android:paddingStart="@dimen/_40sdp"
-                android:paddingBottom="@dimen/_15sdp"
-                android:textColor="@color/colorSecondaryText"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="@dimen/_15ssp"
-                app:backgroundTint="@color/colorSecondaryLightText"
-                app:layout_constraintTop_toBottomOf="@+id/viewTopContainer" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewEmailSignUp"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:src="@drawable/ic_action_message"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextEmailSignUp"
+            app:layout_constraintStart_toStartOf="@+id/editTextEmailSignUp"
+            app:layout_constraintTop_toTopOf="@+id/editTextEmailSignUp" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewEmailSignUp"
-                android:layout_width="@dimen/_17sdp"
-                android:layout_height="@dimen/_17sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
-                android:src="@drawable/ic_action_message"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextEmailSignUp"
-                app:layout_constraintStart_toStartOf="@+id/editTextEmailSignUp"
-                app:layout_constraintTop_toTopOf="@+id/editTextEmailSignUp" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextEmailSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/comic_regular"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/_40sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:textColor="@color/colorSecondaryText"
+            android:textColorHint="@color/colorSecondaryText"
+            android:textSize="@dimen/_15ssp"
+            app:backgroundTint="@color/colorSecondaryLightText"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNameSignUp" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextEmailSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:fontFamily="@font/comic_regular"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:paddingStart="@dimen/_40sdp"
-                android:paddingBottom="@dimen/_15sdp"
-                android:textColor="@color/colorSecondaryText"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="@dimen/_15ssp"
-                app:backgroundTint="@color/colorSecondaryLightText"
-                app:layout_constraintTop_toBottomOf="@+id/editTextNameSignUp" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewPasswordSignUp"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_4sdp"
+            android:src="@drawable/ic_action_lock"
+            app:layout_constraintBottom_toBottomOf="@+id/editTextPasswordSignUp"
+            app:layout_constraintStart_toStartOf="@+id/editTextPasswordSignUp"
+            app:layout_constraintTop_toTopOf="@+id/editTextPasswordSignUp" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewPasswordSignUp"
-                android:layout_width="@dimen/_17sdp"
-                android:layout_height="@dimen/_17sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_4sdp"
-                android:src="@drawable/ic_action_lock"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextPasswordSignUp"
-                app:layout_constraintStart_toStartOf="@+id/editTextPasswordSignUp"
-                app:layout_constraintTop_toTopOf="@+id/editTextPasswordSignUp" />
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/editTextPasswordSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:fontFamily="@font/comic_regular"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/_40sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:textColor="@color/colorSecondaryText"
+            android:textColorHint="@color/colorSecondaryText"
+            android:textSize="@dimen/_15ssp"
+            app:backgroundTint="@color/colorSecondaryLightText"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailSignUp" />
 
-            <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/editTextPasswordSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:fontFamily="@font/comic_regular"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:paddingStart="@dimen/_40sdp"
-                android:paddingBottom="@dimen/_15sdp"
-                android:textColor="@color/colorSecondaryText"
-                android:textColorHint="@color/colorSecondaryText"
-                android:textSize="@dimen/_15ssp"
-                app:backgroundTint="@color/colorSecondaryLightText"
-                app:layout_constraintTop_toBottomOf="@+id/editTextEmailSignUp" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/bg_login_button"
+            android:fontFamily="@font/comic_bold"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignUp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/buttonSignUp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:background="@drawable/bg_login_button"
-                android:fontFamily="@font/comic_bold"
-                android:onClick="@{clickHandler::onSignUpClick}"
-                android:text="@string/sign_up"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignUp" />
+        <TextView
+            android:id="@+id/textViewEnterWithLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:fontFamily="@font/comic_regular"
+            android:text="@string/go_back"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
 
-            <TextView
-                android:id="@+id/textViewEnterWithLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:fontFamily="@font/comic_regular"
-                android:text="@string/go_back"
-                android:textColor="@color/colorPrimary"
-                android:onClick="@{clickHandler::onBackClick}"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/buttonSignUp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </ScrollView>
-</layout>
+</ScrollView>

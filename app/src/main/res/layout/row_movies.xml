@@ -1,83 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_12sdp"
+    android:layout_marginTop="@dimen/_7sdp"
+    android:layout_marginEnd="@dimen/_12sdp">
 
-    <data>
-
-        <variable
-            name="movie"
-            type="com.codebosses.comical.pojo.Movie" />
-    </data>
-
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_12sdp"
-        android:layout_marginTop="@dimen/_7sdp"
-        android:layout_marginEnd="@dimen/_12sdp">
+        android:layout_height="match_parent"
+        android:paddingEnd="@dimen/_5sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:paddingEnd="@dimen/_5sdp"
-            android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewPosterRowMovies"
+            android:layout_width="@dimen/_90sdp"
+            android:layout_height="@dimen/_130sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageViewPosterRowMovies"
-                android:layout_width="@dimen/_90sdp"
-                android:layout_height="@dimen/_130sdp"
-                android:image="@{movie.moviePosterPath}"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewMovieTitleRowMovies"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/comic_bold"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPosterRowMovies"
+            app:layout_constraintTop_toTopOf="@+id/imageViewPosterRowMovies" />
 
-            <TextView
-                android:id="@+id/textViewMovieTitleRowMovies"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/comic_bold"
-                android:text="@{movie.movieTitle}"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPosterRowMovies"
-                app:layout_constraintTop_toTopOf="@+id/imageViewPosterRowMovies" />
+        <TextView
+            android:id="@+id/textViewMovieDescriptionRowMovies"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:fontFamily="@font/comic_regular"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonReadMore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPosterRowMovies"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMovieTitleRowMovies" />
 
-            <TextView
-                android:id="@+id/textViewMovieDescriptionRowMovies"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:fontFamily="@font/comic_regular"
-                android:text="@{movie.movieDescription}"
-                android:textColor="@color/colorSecondaryText"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toTopOf="@+id/buttonReadMore"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPosterRowMovies"
-                app:layout_constraintTop_toBottomOf="@+id/textViewMovieTitleRowMovies" />
+        <Button
+            android:id="@+id/buttonReadMore"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_25sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_login_button"
+            android:fontFamily="@font/comic_regular"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp"
+            android:text="Read More"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageViewPosterRowMovies"
+            app:layout_constraintStart_toEndOf="@+id/imageViewPosterRowMovies" />
 
-            <Button
-                android:id="@+id/buttonReadMore"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/_25sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@drawable/bg_login_button"
-                android:fontFamily="@font/comic_regular"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="Read More"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintBottom_toBottomOf="@+id/imageViewPosterRowMovies"
-                app:layout_constraintStart_toEndOf="@+id/imageViewPosterRowMovies" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.cardview.widget.CardView>
-
-</layout>
+</androidx.cardview.widget.CardView>

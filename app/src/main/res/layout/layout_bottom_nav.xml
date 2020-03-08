@@ -1,98 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <View
+        android:id="@+id/bottomShadowHome"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@drawable/bottom_shadow" />
 
     <LinearLayout
+        android:id="@+id/bottomNavigationHome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <View
-            android:id="@+id/bottomShadowHome"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@drawable/bottom_shadow" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorWhite"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/bottomNavigationHome"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorWhite"
-            android:baselineAligned="false"
-            android:orientation="horizontal">
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/bottomNavItemHome"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/ripple"
+                android:onClick="onBottomNavClick">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewBottomNavHome"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center"
+                    app:srcCompat="@drawable/ic_action_home" />
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:id="@+id/bottomNavItemSearch"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/ripple"
+                android:gravity="center"
+                android:onClick="onBottomNavClick"
+                android:orientation="vertical">
 
-                <androidx.coordinatorlayout.widget.CoordinatorLayout
-                    android:id="@+id/bottomNavItemHome"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/ripple"
-                    android:onClick="onBottomNavClick">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageViewBottomNavHome"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        android:layout_gravity="center"
-                        app:srcCompat="@drawable/ic_action_home" />
-
-                </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewBottomNavSearch"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    app:srcCompat="@drawable/ic_action_search" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+        </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/bottomNavItemSearch"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/ripple"
-                    android:gravity="center"
-                    android:onClick="onBottomNavClick"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageViewBottomNavSearch"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        app:srcCompat="@drawable/ic_action_search" />
-
-                </LinearLayout>
-
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
 
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:id="@+id/bottomNavItemProfile"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:background="@drawable/ripple"
+                android:gravity="center"
+                android:onClick="onBottomNavClick"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/bottomNavItemProfile"
-                    android:layout_width="@dimen/_45sdp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/ripple"
-                    android:gravity="center"
-                    android:onClick="onBottomNavClick"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imageViewBottomNavProfile"
-                        android:layout_width="@dimen/_20sdp"
-                        android:layout_height="@dimen/_20sdp"
-                        app:srcCompat="@drawable/ic_action_profile" />
-
-                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewBottomNavProfile"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    app:srcCompat="@drawable/ic_action_profile" />
 
             </LinearLayout>
 
@@ -100,4 +96,4 @@
 
     </LinearLayout>
 
-</layout>
+</LinearLayout>
