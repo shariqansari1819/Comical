@@ -10,12 +10,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.codebosses.comical.R
 import com.codebosses.comical.di.base.Injectable
+import com.codebosses.comical.repository.model.chapters.ChapterResult
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.ui.main.chapters.ChaptersViewModel
+import com.codebosses.comical.utils.ToastUtil
+import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
+import com.codebosses.comical.utils.extensions.visible
 import dagger.android.support.AndroidSupportInjection
+import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.view.*
 import javax.inject.Inject
 
@@ -35,6 +41,10 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
     var last_text_edit: Long = 0
     var handler: Handler = Handler()
 
+    //    Instance fields....
+    private var chapterList = ArrayList<ChapterResult>()
+    private lateinit var searchComicAdapter: SearchComicAdapter
+
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
@@ -43,6 +53,12 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
 
         searchViewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
 
+        with(view.recyclerViewSearch) {
+            layoutManager = LinearLayoutManager(activity!!)
+            searchComicAdapter = SearchComicAdapter(activity!!, chapterList)
+            adapter = searchComicAdapter
+        }
+
 //        Listeners....
         view.editTextSearch.addTextChangedListener(this)
         return view
@@ -50,7 +66,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
 
     private val input_finish_checker = Runnable {
         if (System.currentTimeMillis() > last_text_edit + delay - 500) { // TODO: do what you need here
-
+            searchComic(editTextSearch.text.toString())
         }
     }
 
@@ -78,13 +94,14 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
         searchViewModel.searchComic(searchText).observe(this) {
             when {
                 it.status.isLoading() -> {
-
+                    circularProgressBarSearch.visible()
                 }
                 it.status.isError() -> {
-
+                    circularProgressBarSearch.gone()
+                    ToastUtil.showCustomToast(activity!!, it.errorMessage!!)
                 }
                 it.status.isSuccessful() -> {
-
+                    circularProgressBarSearch.gone()
                 }
             }
         }
