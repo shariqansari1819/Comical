@@ -1,6 +1,7 @@
 package com.codebosses.comical.ui.main
 
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
@@ -19,17 +20,24 @@ import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.ui.main.chapters.FragmentChapters
 import com.codebosses.comical.ui.main.search.FragmentSearch
 import com.codebosses.comical.ui.registration.login.LoginActivity
+import com.codebosses.comical.utils.extensions.startActivityNewTask
+import com.facebook.login.LoginManager
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.layout_bottom_nav.*
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+
 
 class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
 
     //    Android fields....
     private lateinit var imageViews: Array<ImageView>
+    private lateinit var toolbar: Toolbar
 
     //    Fragment fields....
     private var fragmentHome: FragmentChapters? = null
@@ -43,6 +51,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
     //    TODO: Instance fields....
     private var index: Int = 0
     private var currentFragmentIndex: Int = 0
+    private lateinit var mGoogleApiClient: GoogleApiClient
 
     //    TODO: Fragment stack fields....
     private var stacks = LinkedHashMap<String, Stack<Fragment>>()
@@ -72,7 +81,8 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
 
     //    Method to set custom action bar....
     private fun setCustomActionBar() {
-        setSupportActionBar(appBarMain as Toolbar)
+        toolbar = appBarMain as Toolbar
+        setSupportActionBar(toolbar)
         if (supportActionBar != null) {
             supportActionBar!!.setDisplayShowTitleEnabled(false)
             supportActionBar!!.setDisplayHomeAsUpEnabled(false)
@@ -311,5 +321,33 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
 
     override fun onFragmentInteractionCallback(bundle: Bundle?) {
 
+    }
+
+    fun logOutUser() {
+        PrefUtils.isUserLoggedIn = false
+        if (PrefUtils.isFacebookLogIn) {
+            PrefUtils.isFacebookLogIn = false
+            LoginManager.getInstance().logOut()
+            startActivityNewTask(MainActivity::class.java)
+        } else if (PrefUtils.isGoogleLogIn) {
+            PrefUtils.isGoogleLogIn = false
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback {
+                startActivityNewTask(MainActivity::class.java)
+            }
+        } else {
+            startActivityNewTask(MainActivity::class.java)
+        }
+
+    }
+
+    override fun onStart() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+        mGoogleApiClient = GoogleApiClient.Builder(this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build()
+        mGoogleApiClient.connect()
+        super.onStart()
     }
 }

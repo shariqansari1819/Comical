@@ -1,6 +1,7 @@
 package com.codebosses.comical.ui.detail
 
 import android.os.Bundle
+import android.view.MenuItem
 import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
 import com.codebosses.comical.repository.model.chapterdetail.Comics
@@ -9,6 +10,7 @@ import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.getViewModel
 import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.ui.BaseActivity
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import com.wajahatkarim3.easyflipviewpager.BookFlipPageTransformer
 import kotlinx.android.synthetic.main.activity_comic_read.*
 
@@ -19,6 +21,9 @@ class ComicReadActivity : BaseActivity() {
     private val readComicViewModel by lazy {
         getViewModel<ComicReadViewModel>()
     }
+
+    //    Android fields....
+    private lateinit var sweetAlertDialog: SweetAlertDialog
 
     //    Instance fields....
     private lateinit var comics: Comics
@@ -34,6 +39,12 @@ class ComicReadActivity : BaseActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
+        //        Dialog initialization....
+        sweetAlertDialog = SweetAlertDialog((this))
+        sweetAlertDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE)
+        sweetAlertDialog.titleText = "Please wait..."
+        sweetAlertDialog.setCancelable(false)
+
         intent?.let {
             comics = it.getParcelableExtra(Constants.IntentConstants.COMIC)!!
             getComicDetail(comics.chapter_id)
@@ -46,9 +57,10 @@ class ComicReadActivity : BaseActivity() {
         readComicViewModel.getComicDetail(comicId).observe(this) {
             when {
                 it.status.isLoading() -> {
-//                    circularProgressBarChapterDetail.visible()
+                    sweetAlertDialog.show()
                 }
                 it.status.isSuccessful() -> {
+                    sweetAlertDialog.dismiss()
                     comicDetail = it.data!!
                     comicImagesList = comicDetail.result[0].images_url_array.split(",").map {
                         it.trim()
@@ -63,11 +75,20 @@ class ComicReadActivity : BaseActivity() {
                     }
                 }
                 it.status.isError() -> {
-//                    circularProgressBarChapterDetail.gone()
+                    sweetAlertDialog.dismiss()
                     ToastUtil.showCustomToast(this, it.errorMessage.toString())
                 }
             }
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }

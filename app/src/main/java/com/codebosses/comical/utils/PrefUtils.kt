@@ -18,6 +18,8 @@ object PrefUtils {
     private val USER_EMAIL = Pair(Constants.PreferenceConstants.USER_EMAIL, "")
     private val DEVICE_TOKEN = Pair(Constants.PreferenceConstants.DEVICE_TOKEN, "")
     private val PROFILE_IMAGE_URL = Pair(Constants.PreferenceConstants.PROFILE_IMAGE_URL, "")
+    private val IS_FACEBOOK_LOG_IN = Pair(Constants.PreferenceConstants.IS_FACEBOOK_LOG_IN, false)
+    private val IS_GOOGLE_LOG_IN = Pair(Constants.PreferenceConstants.IS_GOOGLE_LOG_IN, false)
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(NAME, MODE)
@@ -74,5 +76,18 @@ object PrefUtils {
         set(value) = preferences.edit {
             it.putString(PROFILE_IMAGE_URL.first, value)
         }
+
+    var isFacebookLogIn: Boolean
+        get() = preferences.getBoolean(IS_FACEBOOK_LOG_IN.first, IS_FACEBOOK_LOG_IN.second)
+        set(value) = preferences.edit {
+            it.putBoolean(IS_FACEBOOK_LOG_IN.first, value)
+        }
+
+    var isGoogleLogIn: Boolean
+        get() = preferences.getBoolean(IS_GOOGLE_LOG_IN.first, IS_GOOGLE_LOG_IN.second)
+        set(value) = preferences.edit {
+            it.putBoolean(IS_GOOGLE_LOG_IN.first, value)
+        }
+
 
 }

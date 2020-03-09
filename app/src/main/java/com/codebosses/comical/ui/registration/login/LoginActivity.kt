@@ -25,6 +25,12 @@ import com.facebook.login.LoginResult
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONException
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
 
@@ -39,6 +45,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     //    TODO: Facebook sign in fields....
     private lateinit var facebookManager: CallbackManager
 
+    //    Google sign in fields....
+    private lateinit var googleSigninClient: GoogleSignInClient
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -49,7 +58,12 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         sweetAlertDialog.titleText = "Please wait..."
         sweetAlertDialog.setCancelable(false)
 
-        facebookManager = CallbackManager.Factory.create();
+        facebookManager = CallbackManager.Factory.create()
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build()
+        googleSigninClient = GoogleSignIn.getClient(this, gso)
 
 //        Listeners....
         buttonLogin.setOnClickListener(this)
@@ -69,7 +83,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 registerFacebookCallback()
             }
             R.id.buttonGoogle -> {
-
+                signIn()
             }
             R.id.textViewDontHaveAccount -> {
                 startActivity(SignUpActivity::class.java)
@@ -89,7 +103,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                 sweetAlertDialog.dismiss()
                                 val user = it.data
                                 if (user!!.status) {
-                                    saveDataInPref(it.data?.data!!)
+                                    saveDataInPref(it.data?.data!!,"email")
                                 } else {
                                     ToastUtil.showCustomToast(this, user.message)
                                 }
@@ -142,7 +156,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         val firstName = data.getString("first_name")
                         val lastName = data.getString("last_name")
                         val profileImageUrl = data.getJSONObject("picture").getJSONObject("data").getString("url")
-                        loginWithFacebook("$firstName $lastName", id, profileImageUrl)
+                        loginWithFacebook("$firstName $lastName", id, profileImageUrl,"facebook")
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -165,7 +179,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    private fun loginWithFacebook(name: String, id: String, profileImage: String) {
+    private fun loginWithFacebook(name: String, id: String, profileImage: String,loginType: String) {
         loginViewModel.loginWithFacebook(name, 1, PrefUtils.deviceToken, id, profileImage, profileImage)
                 .observe(this) {
                     when {
@@ -174,7 +188,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         }
                         it.status.isSuccessful() -> {
                             sweetAlertDialog.dismiss()
-                            saveDataInPref(it.data!!.data)
+                            saveDataInPref(it.data!!.data,loginType)
                         }
                         it.status.isError() -> {
                             sweetAlertDialog.dismiss()
@@ -184,17 +198,46 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        facebookManager.onActivityResult(requestCode, resultCode, data)
+    private fun signIn() {
+        val intent = googleSigninClient.signInIntent
+        startActivityForResult(intent, 5)
     }
 
-    private fun saveDataInPref(userResult: UserResult) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 5) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleSignInResult(task)
+        } else {
+            facebookManager.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) = try {
+        val account = completedTask.getResult(ApiException::class.java)
+        signInWithGoogle(account)
+    } catch (e: Exception) {
+
+    }
+
+    private fun signInWithGoogle(account: GoogleSignInAccount?) {
+        loginWithFacebook(account!!.displayName!!, account.id!!, account.photoUrl.toString(),"google")
+    }
+
+    private fun saveDataInPref(userResult: UserResult, loginType: String) {
         PrefUtils.isUserLoggedIn = true
         PrefUtils.userId = userResult.user_id
         PrefUtils.userName = userResult.user_name
         PrefUtils.userEmail = userResult.user_email
         PrefUtils.profileImageUrl = userResult.profile_image_url
+        when (loginType) {
+            "facebook" -> {
+                PrefUtils.isFacebookLogIn = true
+            }
+            "google" -> {
+                PrefUtils.isGoogleLogIn = true
+            }
+        }
         startActivityNewTask(MainActivity::class.java)
     }
 }
