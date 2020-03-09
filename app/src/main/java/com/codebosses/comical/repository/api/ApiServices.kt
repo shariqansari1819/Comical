@@ -48,7 +48,12 @@ interface ApiServices {
     @POST("register")
     fun register(@Field("user_email") userEmail: String, @Field("phone_number") phoneNumber: String,
                  @Field("user_name") userName: String, @Field("password") password: String,
-                 @Field("device_id") deviceId: Int,@Field("device_token") deviceToken: String): LiveData<Resource<User>>
+                 @Field("device_id") deviceId: Int, @Field("device_token") deviceToken: String): LiveData<Resource<User>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("searchComics")
+    fun searchComic(@Field("search") search: String): LiveData<Resource<Chapter>>
 
 
 }

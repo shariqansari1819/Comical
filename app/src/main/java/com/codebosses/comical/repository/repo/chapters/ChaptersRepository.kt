@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Singleton
 class ChaptersRepository @Inject constructor(
-    private val apiServices: ApiServices
+        private val apiServices: ApiServices
 ) {
 
     fun getChapters():
@@ -26,8 +26,8 @@ class ChaptersRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun getChapterDetail(chapterId: Int): LiveData<Resource<ChapterDetail>>{
-        return object : NetworkResource<ChapterDetail>(){
+    fun getChapterDetail(chapterId: Int): LiveData<Resource<ChapterDetail>> {
+        return object : NetworkResource<ChapterDetail>() {
             override fun createCall(): LiveData<Resource<ChapterDetail>> {
                 return apiServices.getChapterDetail(chapterId)
             }
@@ -35,10 +35,19 @@ class ChaptersRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun getComicDetail(comicId: Int): LiveData<Resource<ComicDetail>>{
-        return object : NetworkResource<ComicDetail>(){
+    fun getComicDetail(comicId: Int): LiveData<Resource<ComicDetail>> {
+        return object : NetworkResource<ComicDetail>() {
             override fun createCall(): LiveData<Resource<ComicDetail>> {
                 return apiServices.getComicDetail(comicId)
+            }
+
+        }.asLiveData()
+    }
+
+    fun searchComic(search: String): LiveData<Resource<Chapter>> {
+        return object : NetworkResource<Chapter>() {
+            override fun createCall(): LiveData<Resource<Chapter>> {
+                return apiServices.searchComic(search)
             }
 
         }.asLiveData()
