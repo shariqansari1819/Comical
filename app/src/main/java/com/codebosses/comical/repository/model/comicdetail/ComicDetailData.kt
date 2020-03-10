@@ -1,10 +1,10 @@
-package com.codebosses.comical.repository.model.chapterdetail
+package com.codebosses.comical.repository.model.comicdetail
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class ChapterData(
+data class ComicDetailData(
 
 	@SerializedName("comic_id") val comic_id : Int,
 	@SerializedName("category") val category : String,

@@ -15,10 +15,9 @@ import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
 import com.codebosses.comical.repository.eventbus.EventBusSearchClick
-import com.codebosses.comical.repository.model.chapters.ChapterResult
-import com.codebosses.comical.ui.detail.ChapterDetailActivity
+import com.codebosses.comical.repository.model.comics.ComicResult
+import com.codebosses.comical.ui.detail.ComicDetailActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
-import com.codebosses.comical.ui.main.chapters.ChaptersViewModel
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
@@ -49,7 +48,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
     var handler: Handler = Handler()
 
     //    Instance fields....
-    private var chapterList = ArrayList<ChapterResult>()
+    private var chapterList = ArrayList<ComicResult>()
     private lateinit var searchComicAdapter: SearchComicAdapter
 
     override fun onCreateView(
@@ -131,7 +130,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
                 Constants.IntentConstants.COMIC_CHAPTER,
                 chapterList[eventBusSearchClick.position]
         )
-        activity!!.startActivity(ChapterDetailActivity::class.java, bundle)
+        activity!!.startActivity(ComicDetailActivity::class.java, bundle)
     }
 
 }

@@ -1,7 +1,6 @@
 package com.codebosses.comical.ui.main
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
@@ -17,7 +16,8 @@ import com.codebosses.comical.ui.BaseActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.utils.PrefUtils
 import com.codebosses.comical.utils.extensions.startActivity
-import com.codebosses.comical.ui.main.chapters.FragmentChapters
+import com.codebosses.comical.ui.main.comic.FragmentComics
+import com.codebosses.comical.ui.main.profile.FragmentProfile
 import com.codebosses.comical.ui.main.search.FragmentSearch
 import com.codebosses.comical.ui.registration.login.LoginActivity
 import com.codebosses.comical.utils.extensions.startActivityNewTask
@@ -40,7 +40,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
     private lateinit var toolbar: Toolbar
 
     //    Fragment fields....
-    private var fragmentHome: FragmentChapters? = null
+    private var fragmentHome: FragmentComics? = null
     private var fragmentSearch: FragmentSearch? = null
     private var fragmentProfile: FragmentProfile? = null
     private var currentFragment: Fragment? = null
@@ -91,7 +91,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
 
     //    TODO: Method initialize fragments
     private fun initializeFragments() {
-        fragmentHome = FragmentChapters.getInstance()
+        fragmentHome = FragmentComics.getInstance()
         fragmentSearch = FragmentSearch.getInstance()
         fragmentProfile = FragmentProfile.getInstance()
     }

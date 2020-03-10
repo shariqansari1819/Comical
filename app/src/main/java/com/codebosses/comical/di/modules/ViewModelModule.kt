@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.codebosses.comical.ui.intro.IntroViewModel
 import com.codebosses.comical.di.base.ViewModelFactory
 import com.codebosses.comical.di.base.ViewModelKey
-import com.codebosses.comical.ui.detail.ComicReadViewModel
-import com.codebosses.comical.ui.main.chapters.ChaptersViewModel
+import com.codebosses.comical.ui.detail.ChapterReadViewModel
+import com.codebosses.comical.ui.main.comic.ComicsViewModel
 import com.codebosses.comical.ui.main.search.SearchViewModel
 import com.codebosses.comical.ui.registration.login.LoginViewModel
 import com.codebosses.comical.ui.registration.signup.SignUpViewModel
@@ -42,13 +42,13 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ComicReadViewModel::class)
-    abstract fun bindComicReadViewModel(comicReadViewModel: ComicReadViewModel): ViewModel
+    @ViewModelKey(ChapterReadViewModel::class)
+    abstract fun bindComicReadViewModel(comicReadViewModel: ChapterReadViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(ChaptersViewModel::class)
-    abstract fun bindChaptersViewModel(chaptersViewModel: ChaptersViewModel): ViewModel
+    @ViewModelKey(ComicsViewModel::class)
+    abstract fun bindChaptersViewModel(chaptersViewModel: ComicsViewModel): ViewModel
 
     @Binds
     @IntoMap

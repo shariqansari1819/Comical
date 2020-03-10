@@ -1,7 +1,7 @@
 package com.codebosses.comical.di.modules
 
-import com.codebosses.comical.ui.detail.ChapterDetailActivity
-import com.codebosses.comical.ui.detail.ComicReadActivity
+import com.codebosses.comical.ui.detail.ComicDetailActivity
+import com.codebosses.comical.ui.detail.ChapterReadActivity
 import com.codebosses.comical.ui.intro.IntroActivity
 import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.registration.login.LoginActivity
@@ -32,10 +32,10 @@ abstract class ActivityModule {
     abstract fun contributeSignUpActivity(): SignUpActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeChapterDetailActivity(): ChapterDetailActivity
+    abstract fun contributeChapterDetailActivity(): ComicDetailActivity
 
     @ContributesAndroidInjector
-    abstract fun contributeReadComicActivity(): ComicReadActivity
+    abstract fun contributeReadComicActivity(): ChapterReadActivity
 
 //    @ContributesAndroidInjector
 //    abstract fun contributeNewsArticlesActivity(): NewsArticlesActivity

@@ -1,7 +1,7 @@
 package com.codebosses.comical.di.modules
 
-import com.codebosses.comical.ui.main.FragmentProfile
-import com.codebosses.comical.ui.main.chapters.FragmentChapters
+import com.codebosses.comical.ui.main.profile.FragmentProfile
+import com.codebosses.comical.ui.main.comic.FragmentComics
 import com.codebosses.comical.ui.main.search.FragmentSearch
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -17,7 +17,7 @@ abstract class FragmentModule {
 //    internal abstract fun contributeCountryListFragment(): CountryListFragment
 
     @ContributesAndroidInjector
-    internal abstract fun contributeChapterFragment(): FragmentChapters
+    internal abstract fun contributeChapterFragment(): FragmentComics
 
     @ContributesAndroidInjector
     internal abstract fun contributeProfileFragment(): FragmentProfile

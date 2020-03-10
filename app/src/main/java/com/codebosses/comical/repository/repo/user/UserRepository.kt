@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import com.codebosses.comical.repository.api.ApiServices
 import com.codebosses.comical.repository.api.network.NetworkResource
 import com.codebosses.comical.repository.api.network.Resource
-import com.codebosses.comical.repository.model.chapters.Chapter
 import com.codebosses.comical.repository.model.user.User
 import javax.inject.Inject
 import javax.inject.Singleton

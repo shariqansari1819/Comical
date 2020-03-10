@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codebosses.comical.R
 import com.codebosses.comical.repository.eventbus.EventBusSearchClick
-import com.codebosses.comical.repository.model.chapters.ChapterResult
+import com.codebosses.comical.repository.model.comics.ComicResult
 import kotlinx.android.synthetic.main.row_search_comic.view.*
 import org.greenrobot.eventbus.EventBus
 
-class SearchComicAdapter(val context: Context, val chapterList: List<ChapterResult>) : RecyclerView.Adapter<SearchComicAdapter.SearchComicHolder>() {
+class SearchComicAdapter(val context: Context, val chapterList: List<ComicResult>) : RecyclerView.Adapter<SearchComicAdapter.SearchComicHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -29,7 +29,7 @@ class SearchComicAdapter(val context: Context, val chapterList: List<ChapterResu
     }
 
     inner class SearchComicHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindData(chapterResult: ChapterResult) {
+        fun bindData(chapterResult: ComicResult) {
             Glide.with(context)
                     .load(chapterResult.comic_poster_path)
                     .centerCrop()

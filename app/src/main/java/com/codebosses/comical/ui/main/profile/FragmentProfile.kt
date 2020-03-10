@@ -1,12 +1,11 @@
-package com.codebosses.comical.ui.main
+package com.codebosses.comical.ui.main.profile
 
 import android.os.Bundle
 import android.view.*
 import com.codebosses.comical.R
+import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.utils.PrefUtils
-import com.codebosses.comical.utils.extensions.startActivityNewTask
-import com.facebook.login.LoginManager
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 

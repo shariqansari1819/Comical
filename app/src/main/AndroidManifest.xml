@@ -14,9 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ui.detail.ComicReadActivity"/>
+        <activity android:name=".ui.detail.ChapterReadActivity"/>
         <activity
-            android:name=".ui.detail.ChapterDetailActivity"
+            android:name=".ui.detail.ComicDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.registration.signup.SignUpActivity"

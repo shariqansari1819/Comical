@@ -3,10 +3,9 @@ package com.codebosses.comical.repository.api
 import androidx.lifecycle.LiveData
 import com.codebosses.comical.repository.api.network.Resource
 import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
-import com.codebosses.comical.repository.model.chapters.Chapter
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
+import com.codebosses.comical.repository.model.comics.Comic
 import com.codebosses.comical.repository.model.user.User
-import okhttp3.ResponseBody
 import retrofit2.http.*
 
 
@@ -18,17 +17,17 @@ interface ApiServices {
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @GET("getComics")
-    fun getChapters(): LiveData<Resource<Chapter>>
+    fun getComics(): LiveData<Resource<Comic>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("getChepterDetail")
-    fun getComicDetail(@Field("chapter_id") chapterId: Int): LiveData<Resource<ComicDetail>>
+    fun getChapterDetail(@Field("chapter_id") chapterId: Int): LiveData<Resource<ChapterDetail>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("getComicDetail")
-    fun getChapterDetail(@Field("comic_id") comicId: Int): LiveData<Resource<ChapterDetail>>
+    fun getComicDetail(@Field("comic_id") comicId: Int): LiveData<Resource<ComicDetail>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
@@ -53,7 +52,7 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("searchComics")
-    fun searchComic(@Field("search") search: String): LiveData<Resource<Chapter>>
+    fun searchComic(@Field("search") search: String): LiveData<Resource<Comic>>
 
 
 }

@@ -6,18 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.codebosses.comical.R
-import com.codebosses.comical.repository.model.chapterdetail.ChapterData
+import com.codebosses.comical.repository.model.comicdetail.ComicDetailData
 import kotlinx.android.synthetic.main.fragment_about.view.*
 
 
 class FragmentAbout : Fragment() {
 
-    private lateinit var chapterData: ChapterData
+    private lateinit var chapterData: ComicDetailData
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            chapterData = it.getParcelable<ChapterData>(ARG_CHAPTER_DETAIL)!!
+            chapterData = it.getParcelable<ComicDetailData>(ARG_CHAPTER_DETAIL)!!
         }
     }
 
@@ -38,7 +38,7 @@ class FragmentAbout : Fragment() {
         const val ARG_CHAPTER_DETAIL = "arg_chapter_detail"
 
         @JvmStatic
-        fun newInstance(chapterData: ChapterData) =
+        fun newInstance(chapterData: ComicDetailData) =
             FragmentAbout().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_CHAPTER_DETAIL, chapterData)

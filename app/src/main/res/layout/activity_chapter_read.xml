@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/colorBlack"
     android:layout_height="match_parent"
-    tools:context="com.codebosses.comical.ui.detail.ComicReadActivity">
+    tools:context="com.codebosses.comical.ui.detail.ChapterReadActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarReadComic"

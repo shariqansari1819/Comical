@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
-    tools:context="com.codebosses.comical.ui.detail.ChapterDetailActivity">
+    tools:context="com.codebosses.comical.ui.detail.ComicDetailActivity">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewHeaderComicDetail"

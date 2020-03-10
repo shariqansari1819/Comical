@@ -5,15 +5,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.codebosses.comical.R
-import com.codebosses.comical.repository.model.chapterdetail.ChapterDetailResult
+import com.codebosses.comical.repository.model.comicdetail.ComicDetailResult
 
-class ChapterDetailPagerAdapter(val chapterDetailResult: ChapterDetailResult, val context: Context, fragmentManager: FragmentManager) :
+class ComicDetailPagerAdapter(val chapterDetailResult: ComicDetailResult, val context: Context, fragmentManager: FragmentManager) :
         FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     override fun getItem(position: Int): Fragment =
             when (position) {
                 0 -> FragmentAbout.newInstance(chapterDetailResult.details)
-                1 -> FragmentComics.newInstance(chapterDetailResult.chapters)
+                1 -> FragmentChapters.newInstance(chapterDetailResult.chapters)
                 2 -> FragmentMovies()
                 else -> FragmentAbout()
             }

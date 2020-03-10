@@ -4,35 +4,35 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
-import com.codebosses.comical.repository.model.chapterdetail.Comics
-import com.codebosses.comical.repository.model.comicdetail.ComicDetail
+import com.codebosses.comical.repository.model.comicdetail.Chapter
+import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.getViewModel
 import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.ui.BaseActivity
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import com.wajahatkarim3.easyflipviewpager.BookFlipPageTransformer
-import kotlinx.android.synthetic.main.activity_comic_read.*
+import kotlinx.android.synthetic.main.activity_chapter_read.*
 
 
-class ComicReadActivity : BaseActivity() {
+class ChapterReadActivity : BaseActivity() {
 
     //    View model field....
     private val readComicViewModel by lazy {
-        getViewModel<ComicReadViewModel>()
+        getViewModel<ChapterReadViewModel>()
     }
 
     //    Android fields....
     private lateinit var sweetAlertDialog: SweetAlertDialog
 
     //    Instance fields....
-    private lateinit var comics: Comics
-    private lateinit var comicDetail: ComicDetail
+    private lateinit var comics: Chapter
+    private lateinit var comicDetail: ChapterDetail
     private var comicImagesList: List<String> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_comic_read)
+        setContentView(R.layout.activity_chapter_read)
 
         setSupportActionBar(toolbarReadComic)
         if (supportActionBar != null) {
@@ -53,8 +53,8 @@ class ComicReadActivity : BaseActivity() {
 
     }
 
-    private fun getComicDetail(comicId: Int) {
-        readComicViewModel.getComicDetail(comicId).observe(this) {
+    private fun getComicDetail(chapterId: Int) {
+        readComicViewModel.getChapterDetail(chapterId).observe(this) {
             when {
                 it.status.isLoading() -> {
                     sweetAlertDialog.show()

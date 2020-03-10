@@ -1,4 +1,4 @@
-package com.codebosses.comical.ui.main.chapters
+package com.codebosses.comical.ui.main.comic
 
 import android.content.Context
 import android.os.Bundle
@@ -12,53 +12,52 @@ import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
 import com.codebosses.comical.repository.eventbus.EventBusChapterClick
-import com.codebosses.comical.repository.model.chapters.Chapter
-import com.codebosses.comical.repository.model.chapters.ChapterResult
-import com.codebosses.comical.ui.detail.ChapterDetailActivity
+import com.codebosses.comical.repository.model.comics.Comic
+import com.codebosses.comical.repository.model.comics.ComicResult
+import com.codebosses.comical.ui.detail.ComicDetailActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
-import com.codebosses.comical.utils.LogUtil
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.utils.extensions.visible
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.fragment_chapters.*
-import kotlinx.android.synthetic.main.fragment_chapters.view.*
+import kotlinx.android.synthetic.main.fragment_comics.*
+import kotlinx.android.synthetic.main.fragment_comics.view.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
-class FragmentChapters : BaseFragment(), Injectable {
+class FragmentComics : BaseFragment(), Injectable {
 
     companion object {
-        fun getInstance() = FragmentChapters()
+        fun getInstance() = FragmentComics()
     }
 
     //    View model fields....
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    lateinit var chaptersViewModel: ChaptersViewModel
+    lateinit var chaptersViewModel: ComicsViewModel
 
     //    Adapter fields....
-    private var chaptersList = ArrayList<ChapterResult>()
-    private lateinit var chaptersAdapter: ChaptersAdapter
+    private var chaptersList = ArrayList<ComicResult>()
+    private lateinit var chaptersAdapter: ComicsAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_chapters, container, false)
+        val view = inflater.inflate(R.layout.fragment_comics, container, false)
         EventBus.getDefault().register(this)
 
         chaptersViewModel =
-                ViewModelProviders.of(this, viewModelFactory).get(ChaptersViewModel::class.java)
+                ViewModelProviders.of(this, viewModelFactory).get(ComicsViewModel::class.java)
 
 //        Setting adapter....
         with(view.recyclerViewHome) {
             layoutManager = GridLayoutManager(activity!!, 2)
-            chaptersAdapter = ChaptersAdapter(activity!!, chaptersList)
+            chaptersAdapter = ComicsAdapter(activity!!, chaptersList)
             adapter = chaptersAdapter
         }
         getChapters()
@@ -72,14 +71,14 @@ class FragmentChapters : BaseFragment(), Injectable {
     }
 
     private fun getChapters() {
-        chaptersViewModel.getChapters().observe(this) {
+        chaptersViewModel.getComics().observe(this) {
             when {
                 it.status.isLoading() -> {
                     circularProgressBarHome.visible()
                 }
                 it.status.isSuccessful() -> {
                     circularProgressBarHome.gone()
-                    val chapter = it.data as Chapter
+                    val chapter = it.data as Comic
                     when (chapter.status) {
                         true -> {
                             chaptersList.addAll(chapter.result)
@@ -110,7 +109,7 @@ class FragmentChapters : BaseFragment(), Injectable {
                 Constants.IntentConstants.COMIC_CHAPTER,
                 chaptersList[eventBusChapterClick.position]
         )
-        activity!!.startActivity(ChapterDetailActivity::class.java, bundle)
+        activity!!.startActivity(ComicDetailActivity::class.java, bundle)
     }
 
 }

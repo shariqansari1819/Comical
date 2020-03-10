@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codebosses.comical.R
 import com.codebosses.comical.repository.eventbus.EventBusComicClick
-import com.codebosses.comical.repository.model.chapterdetail.Comics
+import com.codebosses.comical.repository.model.comicdetail.Chapter
 import kotlinx.android.synthetic.main.row_comic.view.*
 import org.greenrobot.eventbus.EventBus
 
-class ComicsAdapter(val context: Context, val comicsList: ArrayList<Comics>) :
-    RecyclerView.Adapter<ComicsAdapter.ComicsHolder>() {
+class ChaptersAdapter(val context: Context, val comicsList: ArrayList<Chapter>) :
+    RecyclerView.Adapter<ChaptersAdapter.ComicsHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -32,7 +32,7 @@ class ComicsAdapter(val context: Context, val comicsList: ArrayList<Comics>) :
 
     inner class ComicsHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bindComic(comic: Comics) {
+        fun bindComic(comic: Chapter) {
             Glide.with(context)
                 .load(comic.poster_path)
                 .placeholder(R.drawable.comic_placeholder)

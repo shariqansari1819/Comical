@@ -7,46 +7,46 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
-import com.codebosses.comical.repository.model.chapterdetail.ChapterData
-import com.codebosses.comical.repository.model.chapters.ChapterResult
+import com.codebosses.comical.repository.model.comicdetail.ComicDetailData
+import com.codebosses.comical.repository.model.comics.ComicResult
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.getViewModel
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.utils.extensions.visible
 import com.codebosses.comical.ui.BaseActivity
-import com.codebosses.comical.ui.main.chapters.ChaptersViewModel
-import kotlinx.android.synthetic.main.activity_chapter_detail.*
+import com.codebosses.comical.ui.main.comic.ComicsViewModel
+import kotlinx.android.synthetic.main.activity_comic_detail.*
 
 
-class ChapterDetailActivity : BaseActivity() {
+class ComicDetailActivity : BaseActivity() {
 
     //    View model field....
     private val chaptersViewModel by lazy {
-        getViewModel<ChaptersViewModel>()
+        getViewModel<ComicsViewModel>()
     }
 
     //    Instance fields....
-    private lateinit var chapterResult: ChapterResult
-    private lateinit var chapterData: ChapterData
+    private lateinit var chapterResult: ComicResult
+    private lateinit var chapterData: ComicDetailData
     private lateinit var typeface: Typeface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chapter_detail)
+        setContentView(R.layout.activity_comic_detail)
 
         typeface = Typeface.createFromAsset(assets, "fonts/comic_bold.ttf");
 
         chapterResult = intent.getParcelableExtra(Constants.IntentConstants.COMIC_CHAPTER)!!
 
         if (chapterResult != null) {
-            getChapterDetail(chapterResult.comic_id)
+            getComicDetail(chapterResult.comic_id)
         }
 
     }
 
-    private fun getChapterDetail(chapterId: Int) {
-        chaptersViewModel.getChapterDetail(chapterId).observe(this) {
+    private fun getComicDetail(comicId: Int) {
+        chaptersViewModel.getComicDetail(comicId).observe(this) {
             when {
                 it.status.isLoading() -> {
                     circularProgressBarChapterDetail.visible()
@@ -55,7 +55,7 @@ class ChapterDetailActivity : BaseActivity() {
                     circularProgressBarChapterDetail.gone()
                     chapterData = it.data!!.result.details
                     setChapterDetailData()
-                    val chapterDetailPagerAdapter = ChapterDetailPagerAdapter(it.data!!.result, this, supportFragmentManager)
+                    val chapterDetailPagerAdapter = ComicDetailPagerAdapter(it.data!!.result, this, supportFragmentManager)
                     viewPagerComicDetail.adapter = chapterDetailPagerAdapter
                     viewPagerComicDetail.offscreenPageLimit = 2
                     tabLayoutComicDetail.setupWithViewPager(viewPagerComicDetail)
