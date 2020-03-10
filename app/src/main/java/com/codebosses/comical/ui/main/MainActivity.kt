@@ -2,6 +2,7 @@ package com.codebosses.comical.ui.main
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.widget.ImageView
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
@@ -62,6 +63,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
 
 //        Getting device token
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
