@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codebosses.comical.R
+import com.codebosses.comical.repository.eventbus.EventBusSearchClick
 import com.codebosses.comical.repository.model.chapters.ChapterResult
 import kotlinx.android.synthetic.main.row_search_comic.view.*
+import org.greenrobot.eventbus.EventBus
 
 class SearchComicAdapter(val context: Context, val chapterList: List<ChapterResult>) : RecyclerView.Adapter<SearchComicAdapter.SearchComicHolder>() {
 
@@ -34,6 +36,10 @@ class SearchComicAdapter(val context: Context, val chapterList: List<ChapterResu
                     .placeholder(R.drawable.comic_search_placeholder)
                     .into(view.imageViewComicSearchRow)
             view.textViewNameSearchComicRow.text = chapterResult.comic_name
+
+            view.setOnClickListener {
+                EventBus.getDefault().post(EventBusSearchClick(adapterPosition))
+            }
         }
     }
 

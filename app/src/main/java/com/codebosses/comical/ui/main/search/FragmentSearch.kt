@@ -12,17 +12,24 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codebosses.comical.R
+import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
+import com.codebosses.comical.repository.eventbus.EventBusSearchClick
 import com.codebosses.comical.repository.model.chapters.ChapterResult
+import com.codebosses.comical.ui.detail.ChapterDetailActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.ui.main.chapters.ChaptersViewModel
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
+import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.utils.extensions.visible
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.android.synthetic.main.fragment_search.view.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
@@ -50,6 +57,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
             savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
+        EventBus.getDefault().register(this)
 
         searchViewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel::class.java)
 
@@ -62,6 +70,11 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
 //        Listeners....
         view.editTextSearch.addTextChangedListener(this)
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        EventBus.getDefault().unregister(this)
     }
 
     private val input_finish_checker = Runnable {
@@ -102,9 +115,23 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
                 }
                 it.status.isSuccessful() -> {
                     circularProgressBarSearch.gone()
+                    searchComicAdapter.notifyItemRangeRemoved(0, chapterList.count())
+                    chapterList.clear()
+                    chapterList.addAll(it.data!!.result)
+                    searchComicAdapter.notifyItemRangeInserted(0, chapterList.count())
                 }
             }
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun eventBusSearchClick(eventBusSearchClick: EventBusSearchClick) {
+        val bundle = Bundle()
+        bundle.putParcelable(
+                Constants.IntentConstants.COMIC_CHAPTER,
+                chapterList[eventBusSearchClick.position]
+        )
+        activity!!.startActivity(ChapterDetailActivity::class.java, bundle)
     }
 
 }
