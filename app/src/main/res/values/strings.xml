@@ -46,7 +46,13 @@
         <item>Comics</item>
         <item>Movies</item>
     </string-array>
+    <string-array name="profile_pager_title">
+        <item>Reading</item>
+        <item>Read</item>
+        <item>Favorite</item>
+    </string-array>
     <string name="no_comic_found">No comics found!</string>
     <string name="no_movies_found">No movies found!</string>
+
 
 </resources>

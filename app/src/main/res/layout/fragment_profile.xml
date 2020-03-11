@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.profile.FragmentProfile">
 
-    <Button
-        android:id="@+id/buttonLogOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Log Out"
-        android:visibility="gone" />
-
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewHeaderProfile"
         android:layout_width="match_parent"
@@ -85,7 +77,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewHeaderProfile"
         app:tabBackground="@android:color/transparent"
-        app:tabIndicatorColor="@color/colorWhite"
+        app:tabIndicatorColor="@color/colorPrimary"
         app:tabTextColor="@color/colorWhite" />
 
     <androidx.viewpager.widget.ViewPager

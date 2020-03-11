@@ -1,11 +1,14 @@
 package com.codebosses.comical.ui.main.profile
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
 import com.codebosses.comical.R
 import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.utils.PrefUtils
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
 
 
@@ -14,6 +17,9 @@ class FragmentProfile : BaseFragment() {
     companion object {
         fun getInstance() = FragmentProfile()
     }
+
+    //    Instance fields....
+    private lateinit var typeface: Typeface
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -24,6 +30,16 @@ class FragmentProfile : BaseFragment() {
         setHasOptionsMenu(true)
 
         view.textViewNameProfile.text = PrefUtils.userName
+
+        typeface = Typeface.createFromAsset(activity!!.assets, "fonts/comic_bold.ttf");
+
+        val profilePagerAdapter = ProfilePagerAdapter(childFragmentManager, activity!!)
+        with(view.viewPagerProfile) {
+            adapter = profilePagerAdapter
+            view.tabLayoutProfile.setupWithViewPager(this)
+            this.offscreenPageLimit = 2
+            changeTabsFont(view)
+        }
 
 
         return view
@@ -44,6 +60,21 @@ class FragmentProfile : BaseFragment() {
 //            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun changeTabsFont(view: View) {
+        val vg = view.tabLayoutProfile.getChildAt(0) as ViewGroup
+        val tabsCount = vg.childCount
+        for (j in 0 until tabsCount) {
+            val vgTab = vg.getChildAt(j) as ViewGroup
+            val tabChildsCount = vgTab.childCount
+            for (i in 0 until tabChildsCount) {
+                val tabViewChild = vgTab.getChildAt(i)
+                if (tabViewChild is TextView) {
+                    tabViewChild.typeface = typeface
+                }
+            }
+        }
     }
 
 }
