@@ -13,14 +13,22 @@ class ComicsViewModel @Inject constructor(
 ) : ViewModel() {
 
 
-    private fun comics(): LiveData<Resource<Comic>> =
-            chaptersRepository.getComics()
+    private fun comics(userId: Int): LiveData<Resource<Comic>> =
+            chaptersRepository.getComics(userId)
 
-    fun getComics() = comics()
+    fun getComics(userId: Int) = comics(userId)
 
-    private fun comicDetail(comicId: Int): LiveData<Resource<ComicDetail>> =
-            chaptersRepository.getComicDetail(comicId)
+    private fun comicDetail(comicId: Int, userId: Int): LiveData<Resource<ComicDetail>> =
+            chaptersRepository.getComicDetail(comicId, userId)
 
-    fun getComicDetail(comicId: Int) = comicDetail(comicId)
+    fun getComicDetail(comicId: Int, userId: Int) = comicDetail(comicId, userId)
+
+    private fun favUnFavComic(comicId: Int, userId: Int) = chaptersRepository.favoriteUnFavoriteComic(comicId, userId)
+
+    fun favoriteUnFavoriteComic(comicId: Int, userId: Int) = favUnFavComic(comicId, userId)
+
+    private fun comicRating(comicId: Int, userId: Int, rating: Int) = chaptersRepository.comicRating(comicId, userId, rating)
+
+    fun rateComic(comicId: Int, userId: Int, rating: Int) = comicRating(comicId, userId, rating)
 
 }

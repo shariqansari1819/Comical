@@ -6,6 +6,7 @@ import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
 import com.codebosses.comical.repository.model.comics.Comic
 import com.codebosses.comical.repository.model.user.User
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 
@@ -16,8 +17,9 @@ import retrofit2.http.*
 interface ApiServices {
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
-    @GET("getComics")
-    fun getComics(): LiveData<Resource<Comic>>
+    @FormUrlEncoded
+    @POST("getComics")
+    fun getComics(@Field("user_id") userId: Int): LiveData<Resource<Comic>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
@@ -27,7 +29,7 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("getComicDetail")
-    fun getComicDetail(@Field("comic_id") comicId: Int): LiveData<Resource<ComicDetail>>
+    fun getComicDetail(@Field("comic_id") comicId: Int, @Field("user_id") userId: Int): LiveData<Resource<ComicDetail>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
@@ -54,5 +56,17 @@ interface ApiServices {
     @POST("searchComics")
     fun searchComic(@Field("search") search: String): LiveData<Resource<Comic>>
 
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("favouriteUnfavourite")
+    fun favoriteUnFavorite(@Field("user_id") userId: Int, @Field("comic_id") comicId: Int):
+            LiveData<Resource<ResponseBody>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("comicRating")
+    fun comicRating(@Field("user_id") userId: Int, @Field("comic_id") comicId: Int,
+                    @Field("ratings") rating: Int):
+            LiveData<Resource<ResponseBody>>
 
 }

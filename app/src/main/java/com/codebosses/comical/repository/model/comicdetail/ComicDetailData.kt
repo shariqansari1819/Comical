@@ -21,5 +21,6 @@ data class ComicDetailData(
 	@SerializedName("date_added") val date_added : String,
 	@SerializedName("date_updated") val date_updated : String,
 	@SerializedName("status") val status : Int,
-	@SerializedName("added_by") val added_by : Int
+	@SerializedName("added_by") val added_by : Int,
+	@SerializedName("views") val views: Int
 ): Parcelable

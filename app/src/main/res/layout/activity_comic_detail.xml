@@ -12,14 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_225sdp"
         android:scaleType="centerCrop"
-        android:src="@drawable/comic_search_placeholder"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbarComicDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
+        android:src="@drawable/banner_placeholder"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -27,6 +20,27 @@
         android:layout_height="@dimen/_225sdp"
         android:background="@drawable/bg_search_alpha_gradient"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarComicDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewFavoriteComicDetail"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/bg_circle_white"
+        android:elevation="2dp"
+        android:padding="@dimen/_8sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewHeaderComicDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewHeaderComicDetail"
+        app:srcCompat="@drawable/ic_action_stroke_heart" />
 
     <TextView
         android:id="@+id/textViewTitleComicDetail"
@@ -39,9 +53,9 @@
         android:letterSpacing="0.1"
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_18ssp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewHeaderComicDetail"
-        app:layout_constraintTop_toTopOf="@+id/imageViewHeaderComicDetail" />
+        android:textSize="@dimen/_15ssp"
+        android:layout_marginTop="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewFavoriteComicDetail" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayoutComicDetail"
@@ -50,7 +64,7 @@
         android:background="@android:color/transparent"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewHeaderComicDetail"
         app:tabIndicatorColor="@color/colorPrimary"
-        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorHeight="3dp"
         app:tabSelectedTextColor="@color/colorWhite"
         app:tabTextColor="@color/colorWhite" />
 

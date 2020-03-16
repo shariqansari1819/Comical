@@ -54,6 +54,7 @@ class FragmentProfile : BaseFragment() {
         when (item.itemId) {
             R.id.menuItemLogOut -> {
                 (activity as MainActivity).logOutUser()
+                return true
             }
 //            R.id.menuItemSetting -> {
 //

@@ -5,33 +5,65 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_10sdp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imageViewComicDetailRow"
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="?attr/selectableItemBackground"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="@dimen/_140sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:padding="0dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/comic_placeholder" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textViewNameComicDetailRow"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewComicDetailRow"
-        app:layout_constraintEnd_toEndOf="@+id/imageViewComicDetailRow"
-        app:layout_constraintStart_toStartOf="@+id/imageViewComicDetailRow"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_transparent_black"
-        android:fontFamily="@font/comic_bold"
-        android:lines="2"
-        android:maxLines="2"
-        android:paddingStart="@dimen/_5sdp"
-        android:paddingTop="@dimen/_10sdp"
-        android:paddingEnd="@dimen/_5sdp"
-        android:paddingBottom="@dimen/_10sdp"
-        android:textColor="@color/colorWhite"
-        android:textSize="@dimen/_14ssp" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewChapterRow"
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_180sdp"
+                android:padding="0dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/poster_path_placeholder"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textViewNameChapterRow"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_alpha_gradient"
+                android:fontFamily="@font/comic_bold"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_5sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:textColor="@color/colorWhite"
+                android:textSize="@dimen/_13ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageViewChapterRow"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewChapterRow"
+                app:layout_constraintStart_toStartOf="@+id/imageViewChapterRow" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewFavoriteComic"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_margin="@dimen/_8sdp"
+                android:elevation="2dp"
+                android:background="@drawable/bg_circle_white"
+                android:padding="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="@+id/imageViewChapterRow"
+                app:layout_constraintTop_toTopOf="@+id/imageViewChapterRow"
+                app:srcCompat="@drawable/ic_action_fill_star" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

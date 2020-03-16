@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorWhite">
+
+    <TextView
+        android:id="@+id/textViewComicNameComicRatingDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/comic_regular"
+        android:text="Spiderman (-2016)"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.hsalf.smilerating.SmileRating
+        android:id="@+id/ratingViewComicRatingDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:angryColor="#f29a68"
+        app:drawingColor="#353431"
+        app:isIndicator="false"
+        app:layout_constraintTop_toBottomOf="@+id/textViewComicNameComicRatingDialog"
+        app:normalColor="#f2dd68"
+        app:placeHolderBackgroundColor="#e6e8ed"
+        app:placeHolderSmileColor="#ffffff"
+        app:textNonSelectionColor="#AEB3B5"
+        app:textSelectionColor="#000000" />
+
+    <Button
+        android:id="@+id/buttonRateComicRatingDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:background="@drawable/bg_btn_rating"
+        android:fontFamily="@font/comic_regular"
+        android:text="@string/rate_comic"
+        android:textAllCaps="false"
+        android:textColor="@color/colorWhite"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintTop_toBottomOf="@+id/ratingViewComicRatingDialog" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

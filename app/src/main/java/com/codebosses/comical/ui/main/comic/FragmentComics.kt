@@ -2,9 +2,7 @@ package com.codebosses.comical.ui.main.comic
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
@@ -12,10 +10,13 @@ import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
 import com.codebosses.comical.repository.eventbus.EventBusChapterClick
+import com.codebosses.comical.repository.eventbus.EventBusRateComic
 import com.codebosses.comical.repository.model.comics.Comic
 import com.codebosses.comical.repository.model.comics.ComicResult
 import com.codebosses.comical.ui.detail.ComicDetailActivity
+import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
+import com.codebosses.comical.utils.PrefUtils
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
@@ -42,7 +43,11 @@ class FragmentComics : BaseFragment(), Injectable {
 
     //    Adapter fields....
     private var chaptersList = ArrayList<ComicResult>()
-    private lateinit var chaptersAdapter: ComicsAdapter
+    private lateinit var comicsAdapter: ComicsAdapter
+
+    //    Instance fields....
+    private var userId = 0
+    private var selectedItemPosition = -1
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -54,13 +59,16 @@ class FragmentComics : BaseFragment(), Injectable {
         chaptersViewModel =
                 ViewModelProviders.of(this, viewModelFactory).get(ComicsViewModel::class.java)
 
+        setHasOptionsMenu(true)
+
 //        Setting adapter....
         with(view.recyclerViewHome) {
             layoutManager = GridLayoutManager(activity!!, 2)
-            chaptersAdapter = ComicsAdapter(activity!!, chaptersList)
-            adapter = chaptersAdapter
+            comicsAdapter = ComicsAdapter(activity!!, chaptersList)
+            adapter = comicsAdapter
         }
-        getChapters()
+        userId = PrefUtils.userId
+        getComics(userId)
 
         return view
     }
@@ -70,8 +78,8 @@ class FragmentComics : BaseFragment(), Injectable {
         EventBus.getDefault().unregister(this)
     }
 
-    private fun getChapters() {
-        chaptersViewModel.getComics().observe(this) {
+    private fun getComics(userId: Int) {
+        chaptersViewModel.getComics(userId).observe(this) {
             when {
                 it.status.isLoading() -> {
                     circularProgressBarHome.visible()
@@ -82,7 +90,7 @@ class FragmentComics : BaseFragment(), Injectable {
                     when (chapter.status) {
                         true -> {
                             chaptersList.addAll(chapter.result)
-                            chaptersAdapter.notifyItemRangeInserted(0, chaptersList.count())
+                            comicsAdapter.notifyItemRangeInserted(0, chaptersList.count())
                         }
                         else -> {
                             ToastUtil.showCustomToast(activity!!, "No chapter found!")
@@ -102,14 +110,35 @@ class FragmentComics : BaseFragment(), Injectable {
         AndroidSupportInjection.inject(this)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_home, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menuItemPrivacyPolicy -> {
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun eventBusChapterClick(eventBusChapterClick: EventBusChapterClick) {
+        selectedItemPosition = eventBusChapterClick.position
         val bundle = Bundle()
         bundle.putParcelable(
                 Constants.IntentConstants.COMIC_CHAPTER,
                 chaptersList[eventBusChapterClick.position]
         )
         activity!!.startActivity(ComicDetailActivity::class.java, bundle)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun eventBusComicRated(eventBusRateComic: EventBusRateComic) {
+        chaptersList[selectedItemPosition].is_favorite = eventBusRateComic.isFavorite
+        comicsAdapter.notifyItemChanged(selectedItemPosition)
     }
 
 }

@@ -8,7 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/_10sdp">
 
         <View
             android:id="@+id/viewDetailAbout"
@@ -23,7 +24,6 @@
             android:layout_height="@dimen/_18sdp"
             android:layout_marginStart="@dimen/_20sdp"
             android:isIndicator="true"
-            android:rating="2"
             android:saveEnabled="false"
             app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
             app:mrb_progressTint="@color/colorAccent" />
 
         <TextView
-            android:id="@+id/textViewReviewsAbout"
+            android:id="@+id/textViewViewsAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_5sdp"
@@ -44,23 +44,24 @@
             app:layout_constraintTop_toTopOf="@+id/ratingBarAbout" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imageViewTickAbout"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
-            android:layout_marginEnd="@dimen/_5sdp"
-            android:src="@drawable/ic_action_tick"
-            android:visibility="invisible"
+            android:id="@+id/imageViewRateAbout"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:srcCompat="@drawable/ic_action_stroke_star"
+            app:tint="@color/colorPrimary"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
             app:layout_constraintEnd_toStartOf="@+id/imageViewShareAbout"
             app:layout_constraintTop_toTopOf="@+id/viewDetailAbout" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageViewShareAbout"
-            android:layout_width="@dimen/_18sdp"
-            android:layout_height="@dimen/_18sdp"
+            android:layout_width="@dimen/_17sdp"
+            android:layout_height="@dimen/_17sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:src="@drawable/ic_action_share"
-            android:visibility="invisible"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/viewDetailAbout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/viewDetailAbout" />
@@ -72,7 +73,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/comic_bold"
-            android:text="Publisher:"
+            android:text="@string/publisher"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -98,7 +99,7 @@
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/comic_bold"
-            android:text="First Appearance:"
+            android:text="@string/first_appearance"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,17 +119,71 @@
             app:layout_constraintTop_toTopOf="@+id/textViewFirstAppearanceHeadingAbout" />
 
         <TextView
+            android:id="@+id/textViewAuthorHeadingAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/comic_bold"
+            android:text="@string/author"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewFirstAppearance" />
+
+        <TextView
+            android:id="@+id/textViewAuthor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/comic_regular"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewAuthorHeadingAbout"
+            app:layout_constraintTop_toTopOf="@+id/textViewAuthorHeadingAbout" />
+
+        <TextView
+            android:id="@+id/textViewStatusHeadingAbout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/comic_bold"
+            android:text="@string/status"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewAuthor" />
+
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:fontFamily="@font/comic_regular"
+            android:textColor="@color/colorSecondaryText"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textViewStatusHeadingAbout"
+            app:layout_constraintTop_toTopOf="@+id/textViewStatusHeadingAbout" />
+
+
+
+        <TextView
             android:id="@+id/textViewDescriptionHeadingAbout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/comic_bold"
-            android:text="Description:"
+            android:text="@string/history"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_13ssp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewFirstAppearance" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
 
         <TextView
             android:id="@+id/textViewDescription"

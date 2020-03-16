@@ -7,6 +7,7 @@ import com.codebosses.comical.repository.api.network.Resource
 import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
 import com.codebosses.comical.repository.model.comics.Comic
+import okhttp3.ResponseBody
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -15,21 +16,21 @@ class ComicRepository @Inject constructor(
         private val apiServices: ApiServices
 ) {
 
-    fun getComics():
+    fun getComics(userId: Int):
             LiveData<Resource<Comic>> {
 
         return object : NetworkResource<Comic>() {
             override fun createCall(): LiveData<Resource<Comic>> {
-                return apiServices.getComics()
+                return apiServices.getComics(userId)
             }
 
         }.asLiveData()
     }
 
-    fun getComicDetail(comicId: Int): LiveData<Resource<ComicDetail>> {
+    fun getComicDetail(comicId: Int, userId: Int): LiveData<Resource<ComicDetail>> {
         return object : NetworkResource<ComicDetail>() {
             override fun createCall(): LiveData<Resource<ComicDetail>> {
-                return apiServices.getComicDetail(comicId)
+                return apiServices.getComicDetail(comicId, userId)
             }
 
         }.asLiveData()
@@ -48,6 +49,24 @@ class ComicRepository @Inject constructor(
         return object : NetworkResource<Comic>() {
             override fun createCall(): LiveData<Resource<Comic>> {
                 return apiServices.searchComic(search)
+            }
+
+        }.asLiveData()
+    }
+
+    fun favoriteUnFavoriteComic(comicId: Int, userId: Int): LiveData<Resource<ResponseBody>> {
+        return object : NetworkResource<ResponseBody>() {
+            override fun createCall(): LiveData<Resource<ResponseBody>> {
+                return apiServices.favoriteUnFavorite(userId, comicId)
+            }
+
+        }.asLiveData()
+    }
+
+    fun comicRating(comicId: Int, userId: Int,rating: Int): LiveData<Resource<ResponseBody>> {
+        return object : NetworkResource<ResponseBody>() {
+            override fun createCall(): LiveData<Resource<ResponseBody>> {
+                return apiServices.comicRating(userId, comicId,rating)
             }
 
         }.asLiveData()

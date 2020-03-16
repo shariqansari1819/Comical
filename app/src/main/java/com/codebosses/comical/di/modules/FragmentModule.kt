@@ -1,5 +1,6 @@
 package com.codebosses.comical.di.modules
 
+import com.codebosses.comical.ui.detail.FragmentAbout
 import com.codebosses.comical.ui.main.profile.FragmentProfile
 import com.codebosses.comical.ui.main.comic.FragmentComics
 import com.codebosses.comical.ui.main.search.FragmentSearch
