@@ -5,5 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.profile.FragmentProfileComics">
 
+    <TextView
+        android:id="@+id/textViewComingSoon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Coming Soon!"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_14ssp" />
 
 </FrameLayout>

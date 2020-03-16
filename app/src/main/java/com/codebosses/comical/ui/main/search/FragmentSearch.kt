@@ -20,6 +20,7 @@ import com.codebosses.comical.repository.model.comics.ComicResult
 import com.codebosses.comical.repository.model.search.SearchResult
 import com.codebosses.comical.ui.detail.ComicDetailActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
+import com.codebosses.comical.utils.PrefUtils
 import com.codebosses.comical.utils.SoftKeyboardUtils
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.gone
@@ -72,7 +73,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
 //        Listeners....
         view.editTextSearch.addTextChangedListener(this)
         view.editTextSearch.setOnEditorActionListener { textView, i, keyEvent ->
-            if(i == EditorInfo.IME_ACTION_SEARCH){
+            if (i == EditorInfo.IME_ACTION_SEARCH) {
                 SoftKeyboardUtils.closeSoftKeyboard(activity!!)
                 searchComic(editTextSearch.text.toString())
             }
@@ -113,7 +114,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
     }
 
     private fun searchComic(searchText: String) {
-        searchViewModel.searchComic(searchText).observe(this) {
+        searchViewModel.searchComic(searchText, PrefUtils.userId).observe(this) {
             when {
                 it.status.isLoading() -> {
                     circularProgressBarSearch.visible()
@@ -136,7 +137,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun eventBusSearchClick(eventBusSearchClick: EventBusSearchClick) {
         val searchComicResult = searchList[eventBusSearchClick.position]
-        val comic = ComicResult(searchComicResult.comic_id, searchComicResult.comic_name, searchComicResult.comic_banner_path, 0)
+        val comic = ComicResult(searchComicResult.comic_id, searchComicResult.comic_name, searchComicResult.comic_banner_path, searchComicResult.is_favorite)
         val bundle = Bundle()
         bundle.putParcelable(
                 Constants.IntentConstants.COMIC_CHAPTER,

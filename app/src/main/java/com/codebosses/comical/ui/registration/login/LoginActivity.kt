@@ -103,7 +103,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                                 sweetAlertDialog.dismiss()
                                 val user = it.data
                                 if (user!!.status) {
-                                    saveDataInPref(it.data?.data!!,"email")
+                                    saveDataInPref(it.data?.data!!, "email")
                                 } else {
                                     ToastUtil.showCustomToast(this, user.message)
                                 }
@@ -156,7 +156,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         val firstName = data.getString("first_name")
                         val lastName = data.getString("last_name")
                         val profileImageUrl = data.getJSONObject("picture").getJSONObject("data").getString("url")
-                        loginWithFacebook("$firstName $lastName", id, profileImageUrl,"facebook")
+                        loginWithFacebook("$firstName $lastName", id,"", profileImageUrl, "facebook")
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -179,8 +179,8 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         })
     }
 
-    private fun loginWithFacebook(name: String, id: String, profileImage: String,loginType: String) {
-        loginViewModel.loginWithFacebook(name, 1, PrefUtils.deviceToken, id, profileImage, profileImage)
+    private fun loginWithFacebook(name: String, fbId: String, gId: String, profileImage: String, loginType: String) {
+        loginViewModel.loginWithFacebook(name, 1, PrefUtils.deviceToken, fbId, gId, profileImage, profileImage)
                 .observe(this) {
                     when {
                         it.status.isLoading() -> {
@@ -188,7 +188,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         }
                         it.status.isSuccessful() -> {
                             sweetAlertDialog.dismiss()
-                            saveDataInPref(it.data!!.data,loginType)
+                            saveDataInPref(it.data!!.data, loginType)
                         }
                         it.status.isError() -> {
                             sweetAlertDialog.dismiss()
@@ -221,7 +221,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     }
 
     private fun signInWithGoogle(account: GoogleSignInAccount?) {
-        loginWithFacebook(account!!.displayName!!, account.id!!, account.photoUrl.toString(),"google")
+        loginWithFacebook(account!!.displayName!!,"", account.id!!, account.photoUrl.toString(), "google")
     }
 
     private fun saveDataInPref(userResult: UserResult, loginType: String) {

@@ -8,6 +8,8 @@ import com.codebosses.comical.ui.intro.IntroActivity
 import com.codebosses.comical.utils.PrefUtils
 import com.codebosses.comical.utils.extensions.startActivityWithFinish
 import com.codebosses.comical.ui.main.MainActivity
+import com.codebosses.comical.utils.LogUtil
+
 class SplashActivity : AppCompatActivity() {
 
     private var handler: Handler? = null
@@ -17,6 +19,8 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         handler = Handler()
+
+        LogUtil.debug("notification",PrefUtils.deviceToken)
 
         handler?.postDelayed({ ->
             startActivityWithFinish(if(PrefUtils.firstRun){

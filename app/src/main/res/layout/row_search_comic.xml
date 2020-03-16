@@ -15,7 +15,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_175sdp"
-        android:background="@drawable/bg_search_alpha_gradient"
+        android:background="@drawable/bg_search_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

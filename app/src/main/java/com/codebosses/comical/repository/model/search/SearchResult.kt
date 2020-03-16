@@ -11,5 +11,6 @@ data class SearchResult(
         @SerializedName("comic_name") val comic_name: String,
         @SerializedName("comic_banner_path") val comic_banner_path: String,
         @SerializedName("summary") val summary: String,
-        @SerializedName("category") val category: String
+        @SerializedName("category") val category: String,
+        @SerializedName("is_favorite") var is_favorite: Int
 ) : Parcelable

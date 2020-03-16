@@ -18,7 +18,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_225sdp"
-        android:background="@drawable/bg_search_alpha_gradient"
+        android:background="@drawable/bg_search_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
@@ -26,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"/>
+        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageViewFavoriteComicDetail"
@@ -47,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_12sdp"
         android:layout_marginEnd="@dimen/_20sdp"
         android:fontFamily="@font/comic_black"
         android:gravity="center"
@@ -54,7 +55,6 @@
         android:textAllCaps="true"
         android:textColor="@color/colorWhite"
         android:textSize="@dimen/_15ssp"
-        android:layout_marginTop="@dimen/_12sdp"
         app:layout_constraintTop_toBottomOf="@+id/imageViewFavoriteComicDetail" />
 
     <com.google.android.material.tabs.TabLayout

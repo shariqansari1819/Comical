@@ -42,6 +42,7 @@ interface ApiServices {
     @POST("fbglogin")
     fun fbLogin(@Field("user_name") userName: String, @Field("device_id") device_id: Int,
                 @Field("device_token") deviceToken: String, @Field("fb_id") fbId: String,
+                @Field("g_id") gId: String,
                 @Field("profile_image_url") profileImageUrl: String,
                 @Field("profile_image_thumb_url") profileImageThumbUrl: String): LiveData<Resource<User>>
 
@@ -55,7 +56,8 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("searchComics")
-    fun searchComic(@Field("search") search: String): LiveData<Resource<Search>>
+    fun searchComic(@Field("search") search: String, @Field("user_id") userId: Int):
+            LiveData<Resource<Search>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded

@@ -46,10 +46,10 @@ class ComicRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun searchComic(search: String): LiveData<Resource<Search>> {
+    fun searchComic(search: String,userId: Int): LiveData<Resource<Search>> {
         return object : NetworkResource<Search>() {
             override fun createCall(): LiveData<Resource<Search>> {
-                return apiServices.searchComic(search)
+                return apiServices.searchComic(search,userId)
             }
 
         }.asLiveData()

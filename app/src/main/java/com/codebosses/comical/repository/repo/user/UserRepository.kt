@@ -21,11 +21,11 @@ class UserRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String, profileImageUrl: String,
+    fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String,gId: String, profileImageUrl: String,
                 profileImageThumbUrl: String): LiveData<Resource<User>> {
         return object : NetworkResource<User>() {
             override fun createCall(): LiveData<Resource<User>> {
-                return apiServices.fbLogin(userName,deviceId,deviceToken,fbId,profileImageUrl,profileImageThumbUrl)
+                return apiServices.fbLogin(userName,deviceId,deviceToken,fbId,gId,profileImageUrl,profileImageThumbUrl)
             }
         }.asLiveData()
     }

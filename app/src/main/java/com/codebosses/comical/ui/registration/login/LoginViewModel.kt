@@ -11,10 +11,10 @@ class LoginViewModel @Inject constructor(private val userRepository: UserReposit
     fun signInWithEmailAndPassword(email: String, password: String) =
             login(email, password)
 
-    private fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String, profileImageUrl: String,
-                        profileImageThumbUrl: String) = userRepository.fbLogin(userName, deviceId, deviceToken, fbId, profileImageUrl, profileImageThumbUrl)
+    private fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String,gId: String, profileImageUrl: String,
+                        profileImageThumbUrl: String) = userRepository.fbLogin(userName, deviceId, deviceToken, fbId,gId, profileImageUrl, profileImageThumbUrl)
 
-    fun loginWithFacebook(userName: String, deviceId: Int, deviceToken: String, fbId: String, profileImageUrl: String,
-                          profileImageThumbUrl: String) = fbLogin(userName, deviceId, deviceToken, fbId, profileImageUrl, profileImageThumbUrl)
+    fun loginWithFacebook(userName: String, deviceId: Int, deviceToken: String, fbId: String,gId: String, profileImageUrl: String,
+                          profileImageThumbUrl: String) = fbLogin(userName, deviceId, deviceToken, fbId,gId, profileImageUrl, profileImageThumbUrl)
 
 }

@@ -327,6 +327,10 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
 
     fun logOutUser() {
         PrefUtils.isUserLoggedIn = false
+        PrefUtils.userId = 0
+        PrefUtils.userName = ""
+        PrefUtils.userEmail = ""
+        PrefUtils.profileImageUrl = ""
         if (PrefUtils.isFacebookLogIn) {
             PrefUtils.isFacebookLogIn = false
             LoginManager.getInstance().logOut()
@@ -339,7 +343,6 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
         } else {
             startActivityNewTask(MainActivity::class.java)
         }
-
     }
 
     override fun onStart() {

@@ -17,7 +17,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_225sdp"
-        android:background="@drawable/bg_search_alpha_gradient"
+        android:background="@drawable/bg_comic_detail_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
