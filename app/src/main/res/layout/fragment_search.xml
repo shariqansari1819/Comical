@@ -19,6 +19,7 @@
         android:fontFamily="@font/comic_regular"
         android:hint="@string/search"
         android:inputType="text"
+        android:imeOptions="actionSearch"
         android:paddingStart="@dimen/_40sdp"
         android:paddingTop="@dimen/_10sdp"
         android:paddingEnd="@dimen/_10sdp"

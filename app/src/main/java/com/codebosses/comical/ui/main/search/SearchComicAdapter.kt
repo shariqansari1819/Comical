@@ -9,10 +9,11 @@ import com.bumptech.glide.Glide
 import com.codebosses.comical.R
 import com.codebosses.comical.repository.eventbus.EventBusSearchClick
 import com.codebosses.comical.repository.model.comics.ComicResult
+import com.codebosses.comical.repository.model.search.SearchResult
 import kotlinx.android.synthetic.main.row_search_comic.view.*
 import org.greenrobot.eventbus.EventBus
 
-class SearchComicAdapter(val context: Context, val chapterList: List<ComicResult>) : RecyclerView.Adapter<SearchComicAdapter.SearchComicHolder>() {
+class SearchComicAdapter(val context: Context, val searchList: List<SearchResult>) : RecyclerView.Adapter<SearchComicAdapter.SearchComicHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
 
@@ -21,21 +22,22 @@ class SearchComicAdapter(val context: Context, val chapterList: List<ComicResult
     }
 
     override fun getItemCount(): Int {
-        return chapterList.count()
+        return searchList.count()
     }
 
     override fun onBindViewHolder(holder: SearchComicHolder, position: Int) {
-        holder.bindData(chapterList[position])
+        holder.bindData(searchList[position])
     }
 
     inner class SearchComicHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        fun bindData(chapterResult: ComicResult) {
+        fun bindData(searchResult: SearchResult) {
             Glide.with(context)
-                    .load(chapterResult.comic_poster_path)
+                    .load(searchResult.comic_banner_path)
                     .centerCrop()
-                    .placeholder(R.drawable.comic_search_placeholder)
+                    .placeholder(R.drawable.banner_placeholder)
                     .into(view.imageViewComicSearchRow)
-            view.textViewNameSearchComicRow.text = chapterResult.comic_name
+            view.textViewNameSearchComicRow.text = searchResult.comic_name
+            view.textViewDescriptionSearchComic.text = searchResult.summary
 
             view.setOnClickListener {
                 EventBus.getDefault().post(EventBusSearchClick(adapterPosition))

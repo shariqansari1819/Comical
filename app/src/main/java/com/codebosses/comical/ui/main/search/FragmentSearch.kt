@@ -8,6 +8,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,8 +17,10 @@ import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
 import com.codebosses.comical.repository.eventbus.EventBusSearchClick
 import com.codebosses.comical.repository.model.comics.ComicResult
+import com.codebosses.comical.repository.model.search.SearchResult
 import com.codebosses.comical.ui.detail.ComicDetailActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
+import com.codebosses.comical.utils.SoftKeyboardUtils
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
@@ -48,7 +51,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
     var handler: Handler = Handler()
 
     //    Instance fields....
-    private var chapterList = ArrayList<ComicResult>()
+    private var searchList = ArrayList<SearchResult>()
     private lateinit var searchComicAdapter: SearchComicAdapter
 
     override fun onCreateView(
@@ -62,12 +65,19 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
 
         with(view.recyclerViewSearch) {
             layoutManager = LinearLayoutManager(activity!!)
-            searchComicAdapter = SearchComicAdapter(activity!!, chapterList)
+            searchComicAdapter = SearchComicAdapter(activity!!, searchList)
             adapter = searchComicAdapter
         }
 
 //        Listeners....
         view.editTextSearch.addTextChangedListener(this)
+        view.editTextSearch.setOnEditorActionListener { textView, i, keyEvent ->
+            if(i == EditorInfo.IME_ACTION_SEARCH){
+                SoftKeyboardUtils.closeSoftKeyboard(activity!!)
+                searchComic(editTextSearch.text.toString())
+            }
+            true
+        }
         return view
     }
 
@@ -114,10 +124,10 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
                 }
                 it.status.isSuccessful() -> {
                     circularProgressBarSearch.gone()
-                    searchComicAdapter.notifyItemRangeRemoved(0, chapterList.count())
-                    chapterList.clear()
-                    chapterList.addAll(it.data!!.result)
-                    searchComicAdapter.notifyItemRangeInserted(0, chapterList.count())
+                    searchComicAdapter.notifyItemRangeRemoved(0, searchList.count())
+                    searchList.clear()
+                    searchList.addAll(it.data!!.result)
+                    searchComicAdapter.notifyItemRangeInserted(0, searchList.count())
                 }
             }
         }
@@ -125,10 +135,12 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun eventBusSearchClick(eventBusSearchClick: EventBusSearchClick) {
+        val searchComicResult = searchList[eventBusSearchClick.position]
+        val comic = ComicResult(searchComicResult.comic_id, searchComicResult.comic_name, searchComicResult.comic_banner_path, 0)
         val bundle = Bundle()
         bundle.putParcelable(
                 Constants.IntentConstants.COMIC_CHAPTER,
-                chapterList[eventBusSearchClick.position]
+                comic
         )
         activity!!.startActivity(ComicDetailActivity::class.java, bundle)
     }

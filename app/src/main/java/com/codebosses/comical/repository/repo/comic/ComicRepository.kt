@@ -7,6 +7,7 @@ import com.codebosses.comical.repository.api.network.Resource
 import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
 import com.codebosses.comical.repository.model.comics.Comic
+import com.codebosses.comical.repository.model.search.Search
 import okhttp3.ResponseBody
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -45,9 +46,9 @@ class ComicRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun searchComic(search: String): LiveData<Resource<Comic>> {
-        return object : NetworkResource<Comic>() {
-            override fun createCall(): LiveData<Resource<Comic>> {
+    fun searchComic(search: String): LiveData<Resource<Search>> {
+        return object : NetworkResource<Search>() {
+            override fun createCall(): LiveData<Resource<Search>> {
                 return apiServices.searchComic(search)
             }
 

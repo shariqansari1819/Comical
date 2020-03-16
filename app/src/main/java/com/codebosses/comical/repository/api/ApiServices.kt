@@ -5,6 +5,7 @@ import com.codebosses.comical.repository.api.network.Resource
 import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
 import com.codebosses.comical.repository.model.comics.Comic
+import com.codebosses.comical.repository.model.search.Search
 import com.codebosses.comical.repository.model.user.User
 import okhttp3.ResponseBody
 import retrofit2.http.*
@@ -54,7 +55,7 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("searchComics")
-    fun searchComic(@Field("search") search: String): LiveData<Resource<Comic>>
+    fun searchComic(@Field("search") search: String): LiveData<Resource<Search>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
