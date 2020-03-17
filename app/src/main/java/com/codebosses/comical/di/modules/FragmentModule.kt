@@ -3,6 +3,7 @@ package com.codebosses.comical.di.modules
 import com.codebosses.comical.ui.detail.FragmentAbout
 import com.codebosses.comical.ui.main.profile.FragmentProfile
 import com.codebosses.comical.ui.main.comic.FragmentComics
+import com.codebosses.comical.ui.main.profile.FragmentProfileComics
 import com.codebosses.comical.ui.main.search.FragmentSearch
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -25,4 +26,8 @@ abstract class FragmentModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributeSearchFragment(): FragmentSearch
+
+    @ContributesAndroidInjector
+    internal abstract fun contributeProfileComicsFragment(): FragmentProfileComics
+
 }

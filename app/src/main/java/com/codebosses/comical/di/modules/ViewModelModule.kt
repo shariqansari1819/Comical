@@ -7,6 +7,7 @@ import com.codebosses.comical.di.base.ViewModelFactory
 import com.codebosses.comical.di.base.ViewModelKey
 import com.codebosses.comical.ui.detail.ChapterReadViewModel
 import com.codebosses.comical.ui.main.comic.ComicsViewModel
+import com.codebosses.comical.ui.main.profile.ProfileViewModel
 import com.codebosses.comical.ui.main.search.SearchViewModel
 import com.codebosses.comical.ui.registration.login.LoginViewModel
 import com.codebosses.comical.ui.registration.signup.SignUpViewModel
@@ -65,7 +66,10 @@ abstract class ViewModelModule {
     @ViewModelKey(SearchViewModel::class)
     abstract fun bindSearchViewModel(searchViewModel: SearchViewModel): ViewModel
 
-
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfileViewModel::class)
+    abstract fun bindProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
 
     /**
      * Binds ViewModels factory to provide ViewModels.

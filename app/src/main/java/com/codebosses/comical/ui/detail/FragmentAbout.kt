@@ -12,6 +12,7 @@ import com.codebosses.comical.ui.registration.login.LoginActivity
 import com.codebosses.comical.utils.PrefUtils
 import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.startActivity
+import com.codebosses.comical.utils.intentShareText
 import com.hsalf.smilerating.BaseRating
 import kotlinx.android.synthetic.main.dialog_comic_rating.view.*
 import kotlinx.android.synthetic.main.fragment_about.view.*
@@ -51,7 +52,7 @@ class FragmentAbout : Fragment(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.imageViewShareAbout -> {
-
+                intentShareText(activity!!, "https://play.google.com/store/apps/details?id=com.codebosses.comical&hl=en")
             }
             R.id.imageViewRateAbout -> {
                 if (PrefUtils.isUserLoggedIn) {

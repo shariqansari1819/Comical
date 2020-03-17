@@ -21,6 +21,7 @@ import com.codebosses.comical.utils.PrefUtils
 import com.codebosses.comical.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_comic_detail.*
 import kotlinx.android.synthetic.main.activity_comic_detail.view.*
+import kotlinx.android.synthetic.main.fragment_about.*
 import org.greenrobot.eventbus.EventBus
 
 

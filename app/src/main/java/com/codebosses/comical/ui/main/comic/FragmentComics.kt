@@ -22,6 +22,8 @@ import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.utils.extensions.visible
+import com.codebosses.comical.utils.intentOpenWebsite
+import com.codebosses.comical.utils.intentShareText
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_comics.*
 import kotlinx.android.synthetic.main.fragment_comics.view.*
@@ -118,6 +120,11 @@ class FragmentComics : BaseFragment(), Injectable {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.menuItemPrivacyPolicy -> {
+                intentOpenWebsite(activity!!, "https://codebosses.blogspot.com/p/privacy-policy.html")
+                return true
+            }
+            R.id.menuItemShareApp -> {
+                intentShareText(activity!!, "https://play.google.com/store/apps/details?id=com.codebosses.comical&hl=en")
                 return true
             }
         }

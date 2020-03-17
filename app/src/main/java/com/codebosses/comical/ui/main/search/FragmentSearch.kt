@@ -75,7 +75,7 @@ class FragmentSearch : BaseFragment(), Injectable, TextWatcher {
         view.editTextSearch.setOnEditorActionListener { textView, i, keyEvent ->
             if (i == EditorInfo.IME_ACTION_SEARCH) {
                 SoftKeyboardUtils.closeSoftKeyboard(activity!!)
-                searchComic(editTextSearch.text.toString())
+//                searchComic(editTextSearch.text.toString())
             }
             true
         }

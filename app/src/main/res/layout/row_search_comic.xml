@@ -18,6 +18,18 @@
         android:background="@drawable/bg_search_gradient"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageViewFavoriteSearchComic"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_margin="@dimen/_8sdp"
+        android:elevation="2dp"
+        android:background="@drawable/bg_circle_white"
+        android:padding="@dimen/_4sdp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewComicSearchRow"
+        app:layout_constraintTop_toTopOf="@+id/imageViewComicSearchRow"
+        app:srcCompat="@drawable/ic_action_fill_star" />
+
     <TextView
         android:id="@+id/textViewNameSearchComicRow"
         android:layout_width="match_parent"

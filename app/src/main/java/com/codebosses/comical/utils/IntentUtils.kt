@@ -28,5 +28,5 @@ fun intentShareText(activity: Activity, text: String) {
 fun intentOpenWebsite(activity: Activity, url: String) {
     val openURL = Intent(Intent.ACTION_VIEW)
     openURL.data = Uri.parse(url)
-    activity.startActivity(openURL)
+    activity.startActivity(Intent.createChooser(openURL,"Select browser"))
 }

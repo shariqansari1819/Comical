@@ -72,4 +72,9 @@ interface ApiServices {
                     @Field("ratings") rating: Int):
             LiveData<Resource<ResponseBody>>
 
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("getFavourite")
+    fun getFavorite(@Field("user_id") userId: Int): LiveData<Resource<ResponseBody>>
+
 }

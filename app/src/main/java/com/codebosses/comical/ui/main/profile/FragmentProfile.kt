@@ -1,15 +1,22 @@
 package com.codebosses.comical.ui.main.profile
 
+import android.content.Context
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.codebosses.comical.R
+import com.codebosses.comical.di.base.Injectable
 import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
+import com.codebosses.comical.ui.main.search.SearchViewModel
 import com.codebosses.comical.utils.PrefUtils
+import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import javax.inject.Inject
 
 
 class FragmentProfile : BaseFragment() {
@@ -72,6 +79,7 @@ class FragmentProfile : BaseFragment() {
             for (i in 0 until tabChildsCount) {
                 val tabViewChild = vgTab.getChildAt(i)
                 if (tabViewChild is TextView) {
+                    tabViewChild.isAllCaps = false
                     tabViewChild.typeface = typeface
                 }
             }

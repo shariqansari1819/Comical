@@ -11,9 +11,9 @@ class ProfilePagerAdapter(fm: FragmentManager, val context: Context) :
 
     override fun getItem(position: Int): Fragment {
         when (position) {
-            0 -> return FragmentProfileComics()
-            1 -> return FragmentProfileComics()
-            2 -> return FragmentProfileComics()
+            0 -> return FragmentProfileComics.newInstance("reading")
+            1 -> return FragmentProfileComics.newInstance("read")
+            2 -> return FragmentProfileComics.newInstance("favorite")
             else -> return FragmentProfileComics()
         }
     }

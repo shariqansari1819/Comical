@@ -10,6 +10,8 @@ import com.codebosses.comical.R
 import com.codebosses.comical.repository.eventbus.EventBusSearchClick
 import com.codebosses.comical.repository.model.comics.ComicResult
 import com.codebosses.comical.repository.model.search.SearchResult
+import com.codebosses.comical.utils.extensions.gone
+import com.codebosses.comical.utils.extensions.visible
 import kotlinx.android.synthetic.main.row_search_comic.view.*
 import org.greenrobot.eventbus.EventBus
 
@@ -38,6 +40,11 @@ class SearchComicAdapter(val context: Context, val searchList: List<SearchResult
                     .into(view.imageViewComicSearchRow)
             view.textViewNameSearchComicRow.text = searchResult.comic_name
             view.textViewDescriptionSearchComic.text = searchResult.summary
+            if (searchResult.is_favorite == 0) {
+                view.imageViewFavoriteSearchComic.gone()
+            } else {
+                view.imageViewFavoriteSearchComic.visible()
+            }
 
             view.setOnClickListener {
                 EventBus.getDefault().post(EventBusSearchClick(adapterPosition))

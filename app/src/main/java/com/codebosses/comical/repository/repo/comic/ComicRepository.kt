@@ -46,10 +46,10 @@ class ComicRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun searchComic(search: String,userId: Int): LiveData<Resource<Search>> {
+    fun searchComic(search: String, userId: Int): LiveData<Resource<Search>> {
         return object : NetworkResource<Search>() {
             override fun createCall(): LiveData<Resource<Search>> {
-                return apiServices.searchComic(search,userId)
+                return apiServices.searchComic(search, userId)
             }
 
         }.asLiveData()
@@ -64,10 +64,19 @@ class ComicRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun comicRating(comicId: Int, userId: Int,rating: Int): LiveData<Resource<ResponseBody>> {
+    fun comicRating(comicId: Int, userId: Int, rating: Int): LiveData<Resource<ResponseBody>> {
         return object : NetworkResource<ResponseBody>() {
             override fun createCall(): LiveData<Resource<ResponseBody>> {
-                return apiServices.comicRating(userId, comicId,rating)
+                return apiServices.comicRating(userId, comicId, rating)
+            }
+
+        }.asLiveData()
+    }
+
+    fun getFavoriteComics(userId: Int): LiveData<Resource<ResponseBody>> {
+        return object : NetworkResource<ResponseBody>() {
+            override fun createCall(): LiveData<Resource<ResponseBody>> {
+                return apiServices.getFavorite(userId)
             }
 
         }.asLiveData()
