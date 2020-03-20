@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codebosses.comical.R
 import com.codebosses.comical.repository.eventbus.EventBusChapterClick
+import com.codebosses.comical.repository.eventbus.EventBusFavoriteClick
 import com.codebosses.comical.repository.model.comics.ComicResult
 import com.codebosses.comical.utils.extensions.gone
 import com.codebosses.comical.utils.extensions.visible
 import kotlinx.android.synthetic.main.row_comic.view.*
 import org.greenrobot.eventbus.EventBus
 
-class ComicsAdapter(val context: Context, val chapterList: List<ComicResult>) : RecyclerView.Adapter<ComicsAdapter.ChaptersHolder>() {
+class ComicsAdapter(val context: Context, val chapterList: List<ComicResult>, val clickType: String) : RecyclerView.Adapter<ComicsAdapter.ChaptersHolder>() {
 
     private var layoutInflater: LayoutInflater = LayoutInflater.from(context)
 
@@ -46,7 +47,11 @@ class ComicsAdapter(val context: Context, val chapterList: List<ComicResult>) : 
                 view.imageViewFavoriteComic.visible()
 
             view.setOnClickListener {
-                EventBus.getDefault().post(EventBusChapterClick(adapterPosition))
+                if (clickType.equals("comic")) {
+                    EventBus.getDefault().post(EventBusChapterClick(adapterPosition))
+                } else if (clickType.equals("favorite")) {
+                    EventBus.getDefault().post(EventBusFavoriteClick(adapterPosition))
+                }
             }
         }
 

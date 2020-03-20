@@ -15,6 +15,7 @@ import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.utils.intentShareText
 import com.hsalf.smilerating.BaseRating
 import kotlinx.android.synthetic.main.dialog_comic_rating.view.*
+import kotlinx.android.synthetic.main.fragment_about.*
 import kotlinx.android.synthetic.main.fragment_about.view.*
 
 class FragmentAbout : Fragment(), View.OnClickListener {
@@ -41,6 +42,11 @@ class FragmentAbout : Fragment(), View.OnClickListener {
         view.textViewAuthor.text = chapterData.author
         view.textViewStatus.text = chapterData.comic_status
         view.textViewViewsAbout.text = "${chapterData.views} views"
+        if (chapterData.is_rated == 0) {
+            view.imageViewRateAbout.setImageResource(R.drawable.ic_action_stroke_star)
+        } else {
+            view.imageViewRateAbout.setImageResource(R.drawable.ic_action_fill_star)
+        }
 
 //        All Listeners....
         view.imageViewShareAbout.setOnClickListener(this)
@@ -65,7 +71,7 @@ class FragmentAbout : Fragment(), View.OnClickListener {
     }
 
     private fun showRatingDialog() {
-        var rating = 0
+        var rating = 3
         val view = LayoutInflater.from(activity!!).inflate(R.layout.dialog_comic_rating, null)
         val dialog = AlertDialog.Builder(activity!!)
                 .setView(view)

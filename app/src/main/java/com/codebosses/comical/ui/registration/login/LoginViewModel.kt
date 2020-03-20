@@ -6,10 +6,10 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
-    private fun login(email: String, password: String) = userRepository.login(email, password)
+    private fun login(email: String, password: String,deviceId: Int,deviceToken: String) = userRepository.login(email, password,deviceId,deviceToken)
 
-    fun signInWithEmailAndPassword(email: String, password: String) =
-            login(email, password)
+    fun signInWithEmailAndPassword(email: String, password: String,deviceId: Int,deviceToken: String) =
+            login(email, password,deviceId,deviceToken)
 
     private fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String,gId: String, profileImageUrl: String,
                         profileImageThumbUrl: String) = userRepository.fbLogin(userName, deviceId, deviceToken, fbId,gId, profileImageUrl, profileImageThumbUrl)

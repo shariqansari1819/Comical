@@ -66,7 +66,7 @@ class FragmentComics : BaseFragment(), Injectable {
 //        Setting adapter....
         with(view.recyclerViewHome) {
             layoutManager = GridLayoutManager(activity!!, 2)
-            comicsAdapter = ComicsAdapter(activity!!, chaptersList)
+            comicsAdapter = ComicsAdapter(activity!!, chaptersList,"comic")
             adapter = comicsAdapter
         }
         userId = PrefUtils.userId

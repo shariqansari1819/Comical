@@ -1,5 +1,6 @@
 package com.codebosses.comical.ui.main
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -36,6 +37,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 
 class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
 
+    lateinit var context: Context
+
     //    Android fields....
     private lateinit var imageViews: Array<ImageView>
     private lateinit var toolbar: Toolbar
@@ -63,7 +66,9 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
+
+        context = this
 
 //        Getting device token
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {

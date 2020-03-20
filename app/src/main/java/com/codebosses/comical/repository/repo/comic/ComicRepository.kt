@@ -73,9 +73,9 @@ class ComicRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun getFavoriteComics(userId: Int): LiveData<Resource<ResponseBody>> {
-        return object : NetworkResource<ResponseBody>() {
-            override fun createCall(): LiveData<Resource<ResponseBody>> {
+    fun getFavoriteComics(userId: Int): LiveData<Resource<Comic>> {
+        return object : NetworkResource<Comic>() {
+            override fun createCall(): LiveData<Resource<Comic>> {
                 return apiServices.getFavorite(userId)
             }
 

@@ -13,24 +13,24 @@ class UserRepository @Inject constructor(
         private val apiServices: ApiServices
 ) {
 
-    fun login(email: String, password: String): LiveData<Resource<User>> {
+    fun login(email: String, password: String, deviceId: Int, deviceToken: String): LiveData<Resource<User>> {
         return object : NetworkResource<User>() {
             override fun createCall(): LiveData<Resource<User>> {
-                return apiServices.login(email, password)
+                return apiServices.login(email, password, deviceId, deviceToken)
             }
         }.asLiveData()
     }
 
-    fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String,gId: String, profileImageUrl: String,
+    fun fbLogin(userName: String, deviceId: Int, deviceToken: String, fbId: String, gId: String, profileImageUrl: String,
                 profileImageThumbUrl: String): LiveData<Resource<User>> {
         return object : NetworkResource<User>() {
             override fun createCall(): LiveData<Resource<User>> {
-                return apiServices.fbLogin(userName,deviceId,deviceToken,fbId,gId,profileImageUrl,profileImageThumbUrl)
+                return apiServices.fbLogin(userName, deviceId, deviceToken, fbId, gId, profileImageUrl, profileImageThumbUrl)
             }
         }.asLiveData()
     }
 
-    fun register(name: String, email: String, password: String, phoneNumber: String,deviceId: Int, deviceToken: String): LiveData<Resource<User>> {
+    fun register(name: String, email: String, password: String, phoneNumber: String, deviceId: Int, deviceToken: String): LiveData<Resource<User>> {
         return object : NetworkResource<User>() {
             override fun createCall(): LiveData<Resource<User>> {
                 return apiServices.register(email, phoneNumber, name, password, deviceId, deviceToken)

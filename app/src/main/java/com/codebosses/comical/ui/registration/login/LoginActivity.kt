@@ -93,7 +93,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
     private fun signInWithEmailAndPassword(email: String, password: String) {
         if (validateData(email, password)) {
-            loginViewModel.signInWithEmailAndPassword(email, password)
+            loginViewModel.signInWithEmailAndPassword(email, password, 1, PrefUtils.deviceToken)
                     .observe(this) {
                         when {
                             it.status.isLoading() -> {
@@ -156,7 +156,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         val firstName = data.getString("first_name")
                         val lastName = data.getString("last_name")
                         val profileImageUrl = data.getJSONObject("picture").getJSONObject("data").getString("url")
-                        loginWithFacebook("$firstName $lastName", id,"", profileImageUrl, "facebook")
+                        loginWithFacebook("$firstName $lastName", id, "", profileImageUrl, "facebook")
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -217,11 +217,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         val account = completedTask.getResult(ApiException::class.java)
         signInWithGoogle(account)
     } catch (e: Exception) {
-
+        ToastUtil.showCustomToast(this, e.message.toString())
     }
 
     private fun signInWithGoogle(account: GoogleSignInAccount?) {
-        loginWithFacebook(account!!.displayName!!,"", account.id!!, account.photoUrl.toString(), "google")
+        loginWithFacebook(account!!.displayName!!, "", account.id!!, account.photoUrl.toString(), "google")
     }
 
     private fun saveDataInPref(userResult: UserResult, loginType: String) {

@@ -35,7 +35,8 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("login")
-    fun login(@Field("user_email") userEmail: String, @Field("password") password: String): LiveData<Resource<User>>
+    fun login(@Field("user_email") userEmail: String, @Field("password") password: String,
+              @Field("device_id") deviceId: Int, @Field("device_token") deviceToken: String): LiveData<Resource<User>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
@@ -75,6 +76,6 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("getFavourite")
-    fun getFavorite(@Field("user_id") userId: Int): LiveData<Resource<ResponseBody>>
+    fun getFavorite(@Field("user_id") userId: Int): LiveData<Resource<Comic>>
 
 }
