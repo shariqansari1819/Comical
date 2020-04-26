@@ -15,6 +15,7 @@ import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.utils.extensions.startActivityNewTask
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import java.lang.ref.PhantomReference
 
 class SignUpActivity : BaseActivity(), View.OnClickListener {
 
@@ -102,6 +103,11 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
         PrefUtils.userName = userResult.user_name
         PrefUtils.userEmail = userResult.user_email
         PrefUtils.profileImageUrl = userResult.profile_image_url
+        PrefUtils.phoneNumber = userResult.phone_number
+        PrefUtils.profileStatus = userResult.profile_status
+        PrefUtils.isNotificationStatus = userResult.is_notification == 1
+        PrefUtils.password = editTextPasswordSignUp.text.toString()
+        PrefUtils.accountType = "email"
         startActivityNewTask(MainActivity::class.java)
     }
 }

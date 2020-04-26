@@ -6,6 +6,9 @@ import com.codebosses.comical.ui.intro.IntroActivity
 import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.registration.login.LoginActivity
 import com.codebosses.comical.ui.registration.signup.SignUpActivity
+import com.codebosses.comical.ui.setting.ChangePasswordActivity
+import com.codebosses.comical.ui.setting.EditProfileActivity
+import com.codebosses.comical.ui.setting.SettingActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -36,6 +39,15 @@ abstract class ActivityModule {
 
     @ContributesAndroidInjector
     abstract fun contributeReadComicActivity(): ChapterReadActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeSettingActivity(): SettingActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeEditProfileActivity(): EditProfileActivity
+
+    @ContributesAndroidInjector
+    abstract fun contributeChangePasswordActivity(): ChangePasswordActivity
 
 //    @ContributesAndroidInjector
 //    abstract fun contributeNewsArticlesActivity(): NewsArticlesActivity

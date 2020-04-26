@@ -230,6 +230,9 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         PrefUtils.userName = userResult.user_name
         PrefUtils.userEmail = userResult.user_email
         PrefUtils.profileImageUrl = userResult.profile_image_url
+        PrefUtils.phoneNumber = userResult.phone_number
+        PrefUtils.profileStatus = userResult.profile_status
+        PrefUtils.isNotificationStatus = userResult.is_notification == 1
         when (loginType) {
             "facebook" -> {
                 PrefUtils.isFacebookLogIn = true
@@ -237,7 +240,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
             "google" -> {
                 PrefUtils.isGoogleLogIn = true
             }
+            "email" -> {
+                PrefUtils.password = editTextPasswordLogin.text.toString()
+            }
         }
+        PrefUtils.accountType = loginType
         startActivityNewTask(MainActivity::class.java)
     }
 }

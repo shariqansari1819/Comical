@@ -15,9 +15,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
+import com.codebosses.comical.repository.eventbus.EventBusComicClick
 import com.codebosses.comical.repository.eventbus.EventBusFavoriteClick
+import com.codebosses.comical.repository.eventbus.EventBusReadClick
+import com.codebosses.comical.repository.eventbus.EventBusReadingClick
+import com.codebosses.comical.repository.model.comicdetail.Chapter
 import com.codebosses.comical.repository.model.comicdetail.ComicDetailData
 import com.codebosses.comical.repository.model.comics.ComicResult
+import com.codebosses.comical.ui.detail.ChapterReadActivity
+import com.codebosses.comical.ui.detail.ChaptersAdapter
 import com.codebosses.comical.ui.detail.ComicDetailActivity
 import com.codebosses.comical.ui.detail.FragmentAbout
 import com.codebosses.comical.ui.main.base.BaseFragment
@@ -53,7 +59,10 @@ class FragmentProfileComics : BaseFragment(), Injectable {
 
     //    Adapter fields....
     private var favoriteComicsList = ArrayList<ComicResult>()
+    private var readingChapterList = ArrayList<Chapter>()
+    private var readChapterList = ArrayList<Chapter>()
     private lateinit var comicsAdapter: ComicsAdapter
+    private lateinit var chapterAdapter: ChaptersAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,14 +81,27 @@ class FragmentProfileComics : BaseFragment(), Injectable {
 
         with(view.recyclerViewProfileComics) {
             layoutManager = GridLayoutManager(activity!!, 2)
-            comicsAdapter = ComicsAdapter(activity!!, favoriteComicsList, "favorite")
-            adapter = comicsAdapter
         }
 
         if (profileDataType.isNotEmpty()) {
             when (profileDataType) {
                 "favorite" -> {
+                    comicsAdapter = ComicsAdapter(activity!!, favoriteComicsList, "favorite")
+                    view.recyclerViewProfileComics.adapter = comicsAdapter
                     getFavoriteComics()
+                }
+                "reading" -> {
+                    chapterAdapter = ChaptersAdapter(activity!!, readingChapterList)
+                    view.recyclerViewProfileComics.adapter = chapterAdapter
+                    getReadReading()
+                }
+                "read" -> {
+                    chapterAdapter = ChaptersAdapter(activity!!, readChapterList)
+                    view.recyclerViewProfileComics.adapter = chapterAdapter
+                    getReadReading()
+                }
+                else -> {
+                    view.textViewComingSoon.visible()
                 }
             }
         }
@@ -116,6 +138,40 @@ class FragmentProfileComics : BaseFragment(), Injectable {
                 }
     }
 
+    private fun getReadReading() {
+        profileViewModel.getReadReading(PrefUtils.userId)
+                .observe(this) {
+                    when {
+                        it.status.isLoading() -> {
+                            circularProgressBarProfileComics.visible()
+                        }
+                        it.status.isSuccessful() -> {
+                            circularProgressBarProfileComics.gone()
+                            if (profileDataType == "reading") {
+                                readingChapterList.addAll(it.data!!.reading)
+                                if (readingChapterList.isNotEmpty()) {
+                                    chapterAdapter.notifyItemRangeInserted(0, readingChapterList.count())
+                                } else {
+
+                                }
+                            } else {
+                                readChapterList.addAll(it.data!!.read)
+                                if (readChapterList.isNotEmpty()) {
+                                    chapterAdapter.notifyItemRangeInserted(0, readChapterList.count())
+                                } else {
+
+                                }
+                            }
+
+                        }
+                        it.status.isError() -> {
+                            circularProgressBarProfileComics.gone()
+                            ToastUtil.showCustomToast(activity!!, it.errorMessage!!)
+                        }
+                    }
+                }
+    }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         AndroidSupportInjection.inject(this)
@@ -142,6 +198,22 @@ class FragmentProfileComics : BaseFragment(), Injectable {
                 favoriteComicsList[eventBusFavoriteClick.position]
         )
         activity!!.startActivity(ComicDetailActivity::class.java, bundle)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun eventBusComicClick(eventBusReadingClick: EventBusReadingClick) {
+        val bundle = Bundle().apply {
+            putParcelable(Constants.IntentConstants.COMIC, readingChapterList[eventBusReadingClick.position])
+        }
+        activity?.startActivity(ChapterReadActivity::class.java, bundle)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun eventBusComicClick(eventBusReadClick: EventBusReadClick) {
+        val bundle = Bundle().apply {
+            putParcelable(Constants.IntentConstants.COMIC, readChapterList[eventBusReadClick.position])
+        }
+        activity?.startActivity(ChapterReadActivity::class.java, bundle)
     }
 
 }

@@ -12,4 +12,8 @@ class ProfileViewModel @Inject constructor(
 
     fun getFavoriteComics(userId: Int) = favorite(userId)
 
+    private fun readReading(userId: Int) = comicRepository.getReadReading(userId)
+
+    fun getReadReading(userId: Int) = readReading(userId)
+
 }

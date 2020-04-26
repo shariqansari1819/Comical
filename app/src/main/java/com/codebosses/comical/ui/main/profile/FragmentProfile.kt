@@ -12,7 +12,9 @@ import com.codebosses.comical.di.base.Injectable
 import com.codebosses.comical.ui.main.MainActivity
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.ui.main.search.SearchViewModel
+import com.codebosses.comical.ui.setting.SettingActivity
 import com.codebosses.comical.utils.PrefUtils
+import com.codebosses.comical.utils.extensions.startActivity
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
@@ -37,6 +39,11 @@ class FragmentProfile : BaseFragment() {
         setHasOptionsMenu(true)
 
         view.textViewNameProfile.text = PrefUtils.userName
+        if(PrefUtils.profileStatus.isEmpty()){
+            view.textViewDescription.text = "Crazy about comics, reading books, play with cats and dogs!"
+        }else {
+            view.textViewDescription.text = PrefUtils.profileStatus
+        }
 
         typeface = Typeface.createFromAsset(activity!!.assets, "fonts/comic_bold.ttf");
 
@@ -59,13 +66,13 @@ class FragmentProfile : BaseFragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menuItemLogOut -> {
-                (activity as MainActivity).logOutUser()
-                return true
-            }
-//            R.id.menuItemSetting -> {
-//
+//            R.id.menuItemLogOut -> {
+//                (activity as MainActivity).logOutUser()
+//                return true
 //            }
+            R.id.menuItemSetting -> {
+                activity?.startActivity(SettingActivity::class.java)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/menuItemPrivacyPolicy"
-        android:title="@string/privacy_policy" />
+<!--    <item-->
+<!--        android:id="@+id/menuItemPrivacyPolicy"-->
+<!--        android:title="@string/privacy_policy" />-->
     <item
         android:id="@+id/menuItemShareApp"
         android:title="@string/share_app"/>
+    <item
+        android:id="@+id/menuItemCheckUpdate"
+        android:title="@string/check_update"/>
 </menu>

@@ -62,7 +62,10 @@ class FragmentAbout : Fragment(), View.OnClickListener {
             }
             R.id.imageViewRateAbout -> {
                 if (PrefUtils.isUserLoggedIn) {
-                    showRatingDialog()
+                    if (chapterData.is_rated == 0)
+                        showRatingDialog()
+                    else
+                        ToastUtil.showCustomToast(activity!!, "Yo! You have already rated this comic.")
                 } else {
                     activity?.startActivity(LoginActivity::class.java)
                 }

@@ -13,8 +13,10 @@
         android:roundIcon="@drawable/comical_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".ui.detail.ChapterReadActivity"/>
+        <activity android:name=".ui.setting.EditProfileActivity"></activity>
+        <activity android:name=".ui.setting.ChangePasswordActivity" />
+        <activity android:name=".ui.setting.SettingActivity" />
+        <activity android:name=".ui.detail.ChapterReadActivity" />
         <activity
             android:name=".ui.detail.ComicDetailActivity"
             android:screenOrientation="portrait" />
@@ -39,9 +41,6 @@
         <activity
             android:name=".ui.main.MainActivity"
             android:screenOrientation="portrait" />
-
-
-
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -71,8 +70,6 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-
-
     </application>
 
 </manifest>

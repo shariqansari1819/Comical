@@ -11,6 +11,9 @@ import com.codebosses.comical.ui.main.profile.ProfileViewModel
 import com.codebosses.comical.ui.main.search.SearchViewModel
 import com.codebosses.comical.ui.registration.login.LoginViewModel
 import com.codebosses.comical.ui.registration.signup.SignUpViewModel
+import com.codebosses.comical.ui.setting.ChangePasswordViewModel
+import com.codebosses.comical.ui.setting.EditProfileViewModel
+import com.codebosses.comical.ui.setting.SettingViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -70,6 +73,21 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(SettingViewModel::class)
+    abstract fun bindSettingViewModel(settingViewModel: SettingViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(EditProfileViewModel::class)
+    abstract fun bindEditProfileViewModel(editProfileViewModel: EditProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChangePasswordViewModel::class)
+    abstract fun bindChangePasswordViewModel(changePasswordViewModel: ChangePasswordViewModel): ViewModel
 
     /**
      * Binds ViewModels factory to provide ViewModels.

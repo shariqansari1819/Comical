@@ -24,6 +24,8 @@ import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.utils.extensions.visible
 import com.codebosses.comical.utils.intentOpenWebsite
 import com.codebosses.comical.utils.intentShareText
+import com.github.javiersantos.appupdater.AppUpdater
+import com.github.javiersantos.appupdater.enums.Display
 import dagger.android.support.AndroidSupportInjection
 import kotlinx.android.synthetic.main.fragment_comics.*
 import kotlinx.android.synthetic.main.fragment_comics.view.*
@@ -66,7 +68,7 @@ class FragmentComics : BaseFragment(), Injectable {
 //        Setting adapter....
         with(view.recyclerViewHome) {
             layoutManager = GridLayoutManager(activity!!, 2)
-            comicsAdapter = ComicsAdapter(activity!!, chaptersList,"comic")
+            comicsAdapter = ComicsAdapter(activity!!, chaptersList, "comic")
             adapter = comicsAdapter
         }
         userId = PrefUtils.userId
@@ -119,13 +121,19 @@ class FragmentComics : BaseFragment(), Injectable {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menuItemPrivacyPolicy -> {
-                intentOpenWebsite(activity!!, "https://codebosses.blogspot.com/p/privacy-policy.html")
-                return true
-            }
+//            R.id.menuItemPrivacyPolicy -> {
+//                intentOpenWebsite(activity!!, "https://codebosses.blogspot.com/p/privacy-policy.html")
+//                return true
+//            }
             R.id.menuItemShareApp -> {
                 intentShareText(activity!!, "https://play.google.com/store/apps/details?id=com.codebosses.comical&hl=en")
                 return true
+            }
+            R.id.menuItemCheckUpdate -> {
+                AppUpdater(activity!!)
+                        .setDisplay(Display.DIALOG)
+                        .showAppUpdated(true)
+                        .start()
             }
         }
         return super.onOptionsItemSelected(item)

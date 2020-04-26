@@ -10,6 +10,8 @@ import com.codebosses.comical.utils.ToastUtil
 import com.codebosses.comical.utils.extensions.getViewModel
 import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.ui.BaseActivity
+import com.codebosses.comical.utils.extensions.gone
+import com.codebosses.comical.utils.extensions.visible
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import com.wajahatkarim3.easyflipviewpager.BookFlipPageTransformer
 import kotlinx.android.synthetic.main.activity_chapter_read.*
@@ -23,7 +25,7 @@ class ChapterReadActivity : BaseActivity() {
     }
 
     //    Android fields....
-    private lateinit var sweetAlertDialog: SweetAlertDialog
+//    private lateinit var sweetAlertDialog: SweetAlertDialog
 
     //    Instance fields....
     private lateinit var comics: Chapter
@@ -40,10 +42,10 @@ class ChapterReadActivity : BaseActivity() {
         }
 
         //        Dialog initialization....
-        sweetAlertDialog = SweetAlertDialog((this))
-        sweetAlertDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE)
-        sweetAlertDialog.titleText = "Please wait..."
-        sweetAlertDialog.setCancelable(false)
+//        sweetAlertDialog = SweetAlertDialog((this))
+//        sweetAlertDialog.changeAlertType(SweetAlertDialog.PROGRESS_TYPE)
+//        sweetAlertDialog.titleText = "Please wait..."
+//        sweetAlertDialog.setCancelable(false)
 
         intent?.let {
             comics = it.getParcelableExtra(Constants.IntentConstants.COMIC)!!
@@ -57,10 +59,12 @@ class ChapterReadActivity : BaseActivity() {
         readComicViewModel.getChapterDetail(chapterId).observe(this) {
             when {
                 it.status.isLoading() -> {
-                    sweetAlertDialog.show()
+//                    sweetAlertDialog.show()
+                    circularProgressBarReadChapter.visible()
                 }
                 it.status.isSuccessful() -> {
-                    sweetAlertDialog.dismiss()
+//                    sweetAlertDialog.dismiss()
+                    circularProgressBarReadChapter.gone()
                     comicDetail = it.data!!
                     comicImagesList = comicDetail.result[0].images_url_array.split(",").map {
                         it.trim()
@@ -75,7 +79,8 @@ class ChapterReadActivity : BaseActivity() {
                     }
                 }
                 it.status.isError() -> {
-                    sweetAlertDialog.dismiss()
+//                    sweetAlertDialog.dismiss()
+                    circularProgressBarReadChapter.gone()
                     ToastUtil.showCustomToast(this, it.errorMessage.toString())
                 }
             }

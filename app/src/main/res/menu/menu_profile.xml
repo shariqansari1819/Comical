@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    <item-->
-<!--        android:id="@+id/menuItemSetting"-->
-<!--        android:title="@string/setting" />-->
-
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menuItemLogOut"
-        android:title="@string/log_out" />
+        android:id="@+id/menuItemSetting"
+        android:title="@string/settings"
+        android:icon="@drawable/ic_action_fill_setting"
+        app:showAsAction="always"
+        android:orderInCategory="100"/>
+
+<!--    <item-->
+<!--        android:id="@+id/menuItemLogOut"-->
+<!--        android:title="@string/log_out" />-->
 </menu>

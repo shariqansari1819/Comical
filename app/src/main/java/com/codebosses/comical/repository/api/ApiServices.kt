@@ -3,6 +3,8 @@ package com.codebosses.comical.repository.api
 import androidx.lifecycle.LiveData
 import com.codebosses.comical.repository.api.network.Resource
 import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
+import com.codebosses.comical.repository.model.chapterreadreading.ChapterReadReading
+import com.codebosses.comical.repository.model.comicdetail.Chapter
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
 import com.codebosses.comical.repository.model.comics.Comic
 import com.codebosses.comical.repository.model.search.Search
@@ -77,5 +79,30 @@ interface ApiServices {
     @FormUrlEncoded
     @POST("getFavourite")
     fun getFavorite(@Field("user_id") userId: Int): LiveData<Resource<Comic>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("getReadReading")
+    fun getReadReading(@Field("user_id") userId: Int): LiveData<Resource<ChapterReadReading>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("notifSettings")
+    fun updateNotification(@Field("user_id") userId: Int,@Field("notifs") notificationStatus: Int):
+            LiveData<Resource<ResponseBody>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("updateprofile")
+    fun updateProfile(@Field("user_id") userId: Int,@Field("user_name") userName: String,
+                      @Field("phone_number") phoneNumber: String, @Field("profile_status") profileStatus: String):
+            LiveData<Resource<User>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("updatePassword")
+    fun updatePassword(@Field("user_email") userEmail: String,@Field("oldpassword") oldPassword: String,
+                      @Field("newpassword") newPassword: String):
+            LiveData<Resource<ResponseBody>>
 
 }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/colorBackground"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.EditProfileActivity">
+
+    <include
+        layout="@layout/app_bar_edit_profile"
+        android:id="@+id/appBarEditProfile"/>
+
+    <TextView
+        android:id="@+id/textViewNameEditProfile"
+        style="@style/EditProfileTextViewHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarEditProfile"
+        android:text="@string/name" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextNameEditProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_12sdp"
+        style="@style/EditProfileEditTextStyle"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNameEditProfile"
+        android:inputType="textCapWords"
+        app:backgroundTint="@color/colorSecondaryLightText" />
+
+    <TextView
+        android:id="@+id/textViewPhoneEditProfile"
+        style="@style/EditProfileTextViewHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNameEditProfile"
+        android:layout_margin="@dimen/_12sdp"
+        android:text="@string/phone_number" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextPhoneEditProfile"
+        style="@style/EditProfileEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPhoneEditProfile"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:inputType="phone"
+        app:backgroundTint="@color/colorSecondaryLightText" />
+
+    <TextView
+        android:id="@+id/textViewStatusEditProfile"
+        style="@style/EditProfileTextViewHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPhoneEditProfile"
+        android:layout_margin="@dimen/_12sdp"
+        android:text="@string/status" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/editTextStatusEditProfile"
+        style="@style/EditProfileEditTextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatusEditProfile"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        android:maxLines="3"
+        app:backgroundTint="@color/colorSecondaryLightText" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

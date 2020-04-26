@@ -18,6 +18,11 @@ object Constants {
         val PROFILE_IMAGE_URL = "profile_image_url"
         val IS_FACEBOOK_LOG_IN = "is_facebook_log_in"
         val IS_GOOGLE_LOG_IN = "is_google_log_in"
+        val NOTIFICATION_STATUS = "notification_status"
+        val PHONE_NUMBER = "phone_number"
+        val PROFILE_STATUS = "profile_status"
+        val ACCOUNT_TYPE = "account_type"
+        val PASSWORD = "password"
     }
 
     object IntentConstants {

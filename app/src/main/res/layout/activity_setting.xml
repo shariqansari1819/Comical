@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutSetting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    tools:context=".ui.setting.SettingActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/appBarSetting"
+                layout="@layout/app_bar_setting" />
+
+            <TextView
+                android:id="@+id/textViewGeneralHeaderSetting"
+                style="@style/SettingCategory"
+                android:text="@string/general"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appBarSetting" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutEditProfileSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/ripple_rectangle"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textViewGeneralHeaderSetting">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewEditProfileSetting"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_action_fill_user"
+                    app:tint="@color/colorSecondaryLightText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewEditProfileSetting"
+                    style="@style/SettingTextViewStyle"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toEndOf="@+id/imageViewEditProfileSetting"
+                    android:text="@string/edit_profile" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutNotificationSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutEditProfileSetting">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewNotificationSetting"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_action_fill_notification"
+                    app:tint="@color/colorSecondaryLightText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewNotificationSetting"
+                    style="@style/SettingTextViewStyle"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toEndOf="@+id/imageViewNotificationSetting"
+                    android:text="@string/notifications" />
+
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/switchButtonNotificationSetting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    app:sb_checked_color="@color/colorAccent"
+                    app:sb_enable_effect="true"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/textViewGeneralHeaderPrivacy"
+                style="@style/SettingCategory"
+                android:text="@string/privacy"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutNotificationSetting" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutChangePasswordSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/ripple_rectangle"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textViewGeneralHeaderPrivacy">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewChangePasswordSetting"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_action_lock"
+                    app:tint="@color/colorSecondaryLightText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewChangePasswordSetting"
+                    style="@style/SettingTextViewStyle"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toEndOf="@+id/imageViewChangePasswordSetting"
+                    android:text="@string/change_password" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutPrivacyPolicySetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/ripple_rectangle"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutChangePasswordSetting">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewPrivacyPolicySetting"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_action_fill_privacy"
+                    app:tint="@color/colorSecondaryLightText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewPrivacyPolicySetting"
+                    style="@style/SettingTextViewStyle"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toEndOf="@+id/imageViewPrivacyPolicySetting"
+                    android:text="@string/privacy_policy" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewSupportHeaderSetting"
+                style="@style/SettingCategory"
+                android:text="@string/support"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutPrivacyPolicySetting" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayoutShareAppSetting"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@drawable/ripple_rectangle"
+                android:paddingStart="@dimen/_12sdp"
+                android:paddingTop="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_12sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                app:layout_constraintTop_toBottomOf="@+id/textViewSupportHeaderSetting">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageViewShareAppSetting"
+                    android:layout_width="@dimen/_15sdp"
+                    android:layout_height="@dimen/_15sdp"
+                    android:layout_centerVertical="true"
+                    app:srcCompat="@drawable/ic_action_fill_share"
+                    app:tint="@color/colorSecondaryLightText" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewShareAppSetting"
+                    style="@style/SettingTextViewStyle"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_toEndOf="@+id/imageViewShareAppSetting"
+                    android:text="@string/share_app" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textViewLoginHeaderSetting"
+                style="@style/SettingCategory"
+                android:text="@string/log_in"
+                app:layout_constraintStart_toStartOf="parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayoutShareAppSetting" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewLogOutSetting"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@+id/textViewLoginHeaderSetting"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ripple_rectangle"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:fontFamily="@font/comic_bold"
+                android:text="@string/log_out"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_13ssp" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

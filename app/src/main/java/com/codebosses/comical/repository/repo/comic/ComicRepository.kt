@@ -5,6 +5,7 @@ import com.codebosses.comical.repository.api.ApiServices
 import com.codebosses.comical.repository.api.network.NetworkResource
 import com.codebosses.comical.repository.api.network.Resource
 import com.codebosses.comical.repository.model.chapterdetail.ChapterDetail
+import com.codebosses.comical.repository.model.chapterreadreading.ChapterReadReading
 import com.codebosses.comical.repository.model.comicdetail.ComicDetail
 import com.codebosses.comical.repository.model.comics.Comic
 import com.codebosses.comical.repository.model.search.Search
@@ -81,5 +82,15 @@ class ComicRepository @Inject constructor(
 
         }.asLiveData()
     }
+
+    fun getReadReading(userId: Int): LiveData<Resource<ChapterReadReading>> {
+        return object : NetworkResource<ChapterReadReading>() {
+            override fun createCall(): LiveData<Resource<ChapterReadReading>> {
+                return apiServices.getReadReading(userId)
+            }
+
+        }.asLiveData()
+    }
+
 
 }

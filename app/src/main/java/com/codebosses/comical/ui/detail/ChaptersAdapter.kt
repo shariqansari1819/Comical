@@ -8,11 +8,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.codebosses.comical.R
 import com.codebosses.comical.repository.eventbus.EventBusComicClick
+import com.codebosses.comical.repository.eventbus.EventBusReadClick
+import com.codebosses.comical.repository.eventbus.EventBusReadingClick
 import com.codebosses.comical.repository.model.comicdetail.Chapter
 import kotlinx.android.synthetic.main.row_chapter.view.*
 import org.greenrobot.eventbus.EventBus
 
-class ChaptersAdapter(val context: Context, val comicsList: ArrayList<Chapter>) :
+class ChaptersAdapter(val context: Context, val comicsList: ArrayList<Chapter>, val chapterType: String = "") :
         RecyclerView.Adapter<ChaptersAdapter.ComicsHolder>() {
 
     private val layoutInflater = LayoutInflater.from(context)
@@ -41,7 +43,13 @@ class ChaptersAdapter(val context: Context, val comicsList: ArrayList<Chapter>) 
             view.textViewNameComicDetailRow.text = comic.chapter_name
 
             view.setOnClickListener {
-                EventBus.getDefault().post(EventBusComicClick(adapterPosition))
+                if(chapterType == "reading"){
+                    EventBus.getDefault().post(EventBusReadingClick(adapterPosition))
+                }else if(chapterType == "read"){
+                    EventBus.getDefault().post(EventBusReadClick(adapterPosition))
+                }else {
+                    EventBus.getDefault().post(EventBusComicClick(adapterPosition))
+                }
             }
         }
 

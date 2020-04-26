@@ -24,6 +24,12 @@ import com.codebosses.comical.ui.main.search.FragmentSearch
 import com.codebosses.comical.ui.registration.login.LoginActivity
 import com.codebosses.comical.utils.extensions.startActivityNewTask
 import com.facebook.login.LoginManager
+import com.github.javiersantos.appupdater.AppUpdater
+import com.github.javiersantos.appupdater.AppUpdaterUtils
+import com.github.javiersantos.appupdater.enums.AppUpdaterError
+import com.github.javiersantos.appupdater.enums.Display
+import com.github.javiersantos.appupdater.enums.UpdateFrom
+import com.github.javiersantos.appupdater.objects.Update
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
@@ -69,6 +75,7 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING)
 
         context = this
+        checkUpdate()
 
 //        Getting device token
         FirebaseInstanceId.getInstance().instanceId.addOnSuccessListener {
@@ -84,6 +91,25 @@ class MainActivity : BaseActivity(), BaseFragment.FragmentInteractionCallback {
         initializeFragments()
 
         createStacks()
+    }
+
+    private fun checkUpdate(){
+        val appUpdaterUtils = AppUpdaterUtils(this)
+        appUpdaterUtils.setUpdateFrom(UpdateFrom.GOOGLE_PLAY)
+                .withListener(object : AppUpdaterUtils.UpdateListener {
+                    override fun onSuccess(update: Update, isUpdateAvailable: Boolean?) {
+                        if (isUpdateAvailable!!) {
+                            AppUpdater(this@MainActivity)
+                                    .setDisplay(Display.DIALOG)
+                                    .showAppUpdated(true)
+                                    .start()
+                        }
+                    }
+
+                    override fun onFailed(error: AppUpdaterError) {
+
+                    }
+                }).start()
     }
 
     //    Method to set custom action bar....

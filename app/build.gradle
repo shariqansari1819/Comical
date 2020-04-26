@@ -22,8 +22,8 @@ android {
         applicationId "com.codebosses.comical"
         minSdkVersion androidMinSdkVersion
         targetSdkVersion androidTargetSdkVersion
-        versionCode 7
-        versionName "1.0.7"
+        versionCode 10
+        versionName "1.1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "NEWS_API_KEY", credentialProperty['NEWS_API_KEY'])
@@ -32,11 +32,12 @@ android {
             useSupportLibrary = true
         }
         signingConfig signingConfigs.release_config
+        resConfigs "en"
     }
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     dataBinding {
@@ -77,6 +78,8 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation "com.squareup.okhttp3:mockwebserver:$okHttpVersion"
 
     // Lifecycle (ViewModel + LiveData)
@@ -120,7 +123,8 @@ dependencies {
     implementation project(':progress-dialog')
     implementation 'com.codemybrainsout.rating:ratingdialog:1.0.8'
     implementation 'com.github.sujithkanna:smileyrating:1.6.8'
-
+    implementation 'com.github.javiersantos:AppUpdater:2.7'
+    implementation 'com.github.zcweng:switch-button:0.0.3@aar'
 
 //    Facebook Lib
     implementation 'com.facebook.android:facebook-android-sdk:[5,6)'

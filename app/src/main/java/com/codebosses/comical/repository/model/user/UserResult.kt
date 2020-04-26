@@ -11,10 +11,12 @@ data class UserResult (
 		@SerializedName("user_email") val user_email : String,
 		@SerializedName("phone_number") val phone_number : String,
 		@SerializedName("profile_image_url") val profile_image_url : String,
+		@SerializedName("profile_status") val profile_status: String,
 		@SerializedName("profile_image_thumb_url") val profile_image_thumb_url : String,
 		@SerializedName("password") val password : String,
 		@SerializedName("user_role") val user_role : Int,
 		@SerializedName("device_id") val device_id : Int,
+		@SerializedName("is_notification") val is_notification: Int,
 		@SerializedName("status") val status : Int,
 		@SerializedName("date_added") val date_added : String
 )

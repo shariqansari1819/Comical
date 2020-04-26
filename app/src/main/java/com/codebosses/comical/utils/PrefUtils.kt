@@ -20,6 +20,11 @@ object PrefUtils {
     private val PROFILE_IMAGE_URL = Pair(Constants.PreferenceConstants.PROFILE_IMAGE_URL, "")
     private val IS_FACEBOOK_LOG_IN = Pair(Constants.PreferenceConstants.IS_FACEBOOK_LOG_IN, false)
     private val IS_GOOGLE_LOG_IN = Pair(Constants.PreferenceConstants.IS_GOOGLE_LOG_IN, false)
+    private val NOTIFICATION_STATUS = Pair(Constants.PreferenceConstants.NOTIFICATION_STATUS, true)
+    private val PHONE_NUMBER = Pair(Constants.PreferenceConstants.PHONE_NUMBER, "")
+    private val PROFILE_STATUS = Pair(Constants.PreferenceConstants.PROFILE_STATUS, "")
+    private val ACCOUNT_TYPE = Pair(Constants.PreferenceConstants.ACCOUNT_TYPE,"")
+    private val PASSWORD = Pair(Constants.PreferenceConstants.PASSWORD,"")
 
     fun init(context: Context) {
         preferences = context.getSharedPreferences(NAME, MODE)
@@ -89,5 +94,34 @@ object PrefUtils {
             it.putBoolean(IS_GOOGLE_LOG_IN.first, value)
         }
 
+    var isNotificationStatus: Boolean
+        get() = preferences.getBoolean(NOTIFICATION_STATUS.first, NOTIFICATION_STATUS.second)
+        set(value) = preferences.edit {
+            it.putBoolean(NOTIFICATION_STATUS.first, value)
+        }
+
+    var phoneNumber: String
+        get() = preferences.getString(PHONE_NUMBER.first, PHONE_NUMBER.second)!!
+        set(value) = preferences.edit {
+            it.putString(PHONE_NUMBER.first, value)
+        }
+
+    var profileStatus: String
+        get() = preferences.getString(PROFILE_STATUS.first, PROFILE_STATUS.second)!!
+        set(value) = preferences.edit {
+            it.putString(PROFILE_STATUS.first, value)
+        }
+
+    var accountType: String
+        get() = preferences.getString(ACCOUNT_TYPE.first, ACCOUNT_TYPE.second)!!
+        set(value) = preferences.edit {
+            it.putString(ACCOUNT_TYPE.first, value)
+        }
+
+    var password: String
+        get() = preferences.getString(PASSWORD.first, PASSWORD.second)!!
+        set(value) = preferences.edit {
+            it.putString(PASSWORD.first, value)
+        }
 
 }
