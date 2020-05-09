@@ -1,31 +1,24 @@
 package com.codebosses.comical.ui.main.profile
 
 import android.content.Context
-import android.graphics.Typeface
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.codebosses.comical.R
 import com.codebosses.comical.common.Constants
 import com.codebosses.comical.di.base.Injectable
-import com.codebosses.comical.repository.eventbus.EventBusComicClick
 import com.codebosses.comical.repository.eventbus.EventBusFavoriteClick
 import com.codebosses.comical.repository.eventbus.EventBusReadClick
 import com.codebosses.comical.repository.eventbus.EventBusReadingClick
 import com.codebosses.comical.repository.model.comicdetail.Chapter
-import com.codebosses.comical.repository.model.comicdetail.ComicDetailData
 import com.codebosses.comical.repository.model.comics.ComicResult
 import com.codebosses.comical.ui.detail.ChapterReadActivity
 import com.codebosses.comical.ui.detail.ChaptersAdapter
 import com.codebosses.comical.ui.detail.ComicDetailActivity
-import com.codebosses.comical.ui.detail.FragmentAbout
 import com.codebosses.comical.ui.main.base.BaseFragment
 import com.codebosses.comical.ui.main.comic.ComicsAdapter
 import com.codebosses.comical.utils.PrefUtils
@@ -35,10 +28,6 @@ import com.codebosses.comical.utils.extensions.observe
 import com.codebosses.comical.utils.extensions.startActivity
 import com.codebosses.comical.utils.extensions.visible
 import dagger.android.support.AndroidSupportInjection
-import kotlinx.android.synthetic.main.activity_comic_detail.*
-import kotlinx.android.synthetic.main.fragment_comics.view.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.view.*
 import kotlinx.android.synthetic.main.fragment_profile_comics.*
 import kotlinx.android.synthetic.main.fragment_profile_comics.view.*
 import org.greenrobot.eventbus.EventBus
@@ -91,12 +80,12 @@ class FragmentProfileComics : BaseFragment(), Injectable {
                     getFavoriteComics()
                 }
                 "reading" -> {
-                    chapterAdapter = ChaptersAdapter(activity!!, readingChapterList)
+                    chapterAdapter = ChaptersAdapter(activity!!, readingChapterList,"reading")
                     view.recyclerViewProfileComics.adapter = chapterAdapter
                     getReadReading()
                 }
                 "read" -> {
-                    chapterAdapter = ChaptersAdapter(activity!!, readChapterList)
+                    chapterAdapter = ChaptersAdapter(activity!!, readChapterList,"read")
                     view.recyclerViewProfileComics.adapter = chapterAdapter
                     getReadReading()
                 }

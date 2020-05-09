@@ -27,7 +27,24 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("getChepterDetail")
-    fun getChapterDetail(@Field("chapter_id") chapterId: Int): LiveData<Resource<ChapterDetail>>
+    fun getChapterDetail(@Field("chapter_id") chapterId: Int,
+                         @Field("user_id") userId: Int): LiveData<Resource<ChapterDetail>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("addRead")
+    fun addReadChapter(@Field("comic_id") comicId: Int,
+                       @Field("chapter_id") chapterId: Int,
+                       @Field("user_id") userId: Int,
+                       @Field("is_read") isRead: Int): LiveData<Resource<ResponseBody>>
+
+    @Headers("secret_key: 23omE@Numb4_2!*&9")
+    @FormUrlEncoded
+    @POST("addReading")
+    fun addReadingChapter(@Field("comic_id") comicId: Int,
+                       @Field("chapter_id") chapterId: Int,
+                       @Field("user_id") userId: Int,
+                       @Field("is_reading") isRead: Int): LiveData<Resource<ResponseBody>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
@@ -88,21 +105,21 @@ interface ApiServices {
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("notifSettings")
-    fun updateNotification(@Field("user_id") userId: Int,@Field("notifs") notificationStatus: Int):
+    fun updateNotification(@Field("user_id") userId: Int, @Field("notifs") notificationStatus: Int):
             LiveData<Resource<ResponseBody>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("updateprofile")
-    fun updateProfile(@Field("user_id") userId: Int,@Field("user_name") userName: String,
+    fun updateProfile(@Field("user_id") userId: Int, @Field("user_name") userName: String,
                       @Field("phone_number") phoneNumber: String, @Field("profile_status") profileStatus: String):
             LiveData<Resource<User>>
 
     @Headers("secret_key: 23omE@Numb4_2!*&9")
     @FormUrlEncoded
     @POST("updatePassword")
-    fun updatePassword(@Field("user_email") userEmail: String,@Field("oldpassword") oldPassword: String,
-                      @Field("newpassword") newPassword: String):
+    fun updatePassword(@Field("user_email") userEmail: String, @Field("oldpassword") oldPassword: String,
+                       @Field("newpassword") newPassword: String):
             LiveData<Resource<ResponseBody>>
 
 }

@@ -38,12 +38,28 @@ class ComicRepository @Inject constructor(
         }.asLiveData()
     }
 
-    fun getChapterDetail(chapterId: Int): LiveData<Resource<ChapterDetail>> {
+    fun getChapterDetail(chapterId: Int, userId: Int): LiveData<Resource<ChapterDetail>> {
         return object : NetworkResource<ChapterDetail>() {
             override fun createCall(): LiveData<Resource<ChapterDetail>> {
-                return apiServices.getChapterDetail(chapterId)
+                return apiServices.getChapterDetail(chapterId,userId)
             }
 
+        }.asLiveData()
+    }
+
+    fun addReadChapter(comicId: Int, chapterId: Int, userId: Int): LiveData<Resource<ResponseBody>> {
+        return object : NetworkResource<ResponseBody>() {
+            override fun createCall(): LiveData<Resource<ResponseBody>> {
+                return apiServices.addReadChapter(comicId, chapterId, userId, 1)
+            }
+        }.asLiveData()
+    }
+
+    fun addReadingChapter(comicId: Int, chapterId: Int, userId: Int): LiveData<Resource<ResponseBody>> {
+        return object : NetworkResource<ResponseBody>() {
+            override fun createCall(): LiveData<Resource<ResponseBody>> {
+                return apiServices.addReadingChapter(comicId, chapterId, userId, 1)
+            }
         }.asLiveData()
     }
 

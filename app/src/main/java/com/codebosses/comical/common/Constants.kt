@@ -28,6 +28,7 @@ object Constants {
     object IntentConstants {
         val COMIC_CHAPTER = "comic_chapter"
         val COMIC = "comic"
+        val COMIC_ID = "comic_id"
     }
 
 }

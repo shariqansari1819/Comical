@@ -84,4 +84,8 @@
     <string name="edit">Edit</string>
 
 
+    <!--  Read chapter activity  -->
+    <string name="congratulation">Congratulation! You have read this chapter. Do you want to add it in your read list?</string>
+    <string name="add_to_read">Add to Read</string>
+
 </resources>
